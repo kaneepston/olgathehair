@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Olga.TheHAIR | Kraków Wedding & Event Hairstylist</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#A88F7F",
+                        secondary: "#D4C5BB", 
+                        "background-light": "#F9F6F2",
+                        "background-dark": "#1a1816", 
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#262320",
+                        "text-light": "#333333",
+                        "text-dark": "#E5E5E5",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        'xl': "1rem",
+                        '2xl': "1.5rem",
+                        '3xl': "1.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css">
+    <script src="translations.js"></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 relative">
+    <!-- Social Media Sidebar -->
+    <div class="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 hidden lg:flex flex-col gap-3 p-3 bg-white/90 dark:bg-surface-dark/90 backdrop-blur-md rounded-l-2xl shadow-xl border-y border-l border-gray-100 dark:border-gray-800">
+        <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="#" title="Instagram">
+            <span class="font-bold text-xs">IG</span>
+        </a>
+        <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="#" title="Facebook">
+            <span class="font-bold text-xs">FB</span>
+        </a>
+        <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="#" title="Google Reviews">
+            <span class="font-bold text-xs">G+</span>
+        </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <div class="flex-shrink-0 flex items-center">
+                    <a class="font-display text-2xl font-semibold tracking-wider text-primary" href="#">Olga.TheHAIR</a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm uppercase tracking-wide font-medium" href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+                    <a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm uppercase tracking-wide font-medium" href="#services" data-i18n="navServices">Services</a>
+                    <a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm uppercase tracking-wide font-medium" href="#packages" data-i18n="navWeddings">Weddings</a>
+                    <a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm uppercase tracking-wide font-medium" href="#training" data-i18n="navTraining">Training</a>
+                    <a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors text-sm uppercase tracking-wide font-medium" href="#contact" data-i18n="navContact">Contact</a>
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-full p-1 flex items-center ml-4">
+                        <button class="lang-btn-en bg-white dark:bg-surface-dark text-primary dark:text-white shadow-sm rounded-full px-4 py-1.5 text-xs font-bold transition-all" onclick="setLanguage('en')">EN</button>
+                        <button class="lang-btn-pl text-gray-500 dark:text-gray-400 hover:text-primary px-4 py-1.5 text-xs font-medium transition-colors" onclick="setLanguage('pl')">PL</button>
+                    </div>
+                    <a class="bg-primary hover:bg-primary/90 text-white px-7 py-3 rounded-full text-sm font-medium transition-colors shadow-lg shadow-primary/20" href="#contact" data-i18n="navBookAppointment">
+                        Book Appointment
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 dark:text-gray-300 hover:text-primary focus:outline-none">
+                        <span class="material-symbols-outlined text-3xl">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-background-light dark:bg-background-dark border-t border-gray-100 dark:border-gray-800">
+            <div class="px-4 py-6 space-y-4">
+                <a class="block text-gray-600 dark:text-gray-300 hover:text-primary text-sm uppercase tracking-wide font-medium" href="#portfolio" data-i18n="navPortfolio">Portfolio</a>
+                <a class="block text-gray-600 dark:text-gray-300 hover:text-primary text-sm uppercase tracking-wide font-medium" href="#services" data-i18n="navServices">Services</a>
+                <a class="block text-gray-600 dark:text-gray-300 hover:text-primary text-sm uppercase tracking-wide font-medium" href="#packages" data-i18n="navWeddings">Weddings</a>
+                <a class="block text-gray-600 dark:text-gray-300 hover:text-primary text-sm uppercase tracking-wide font-medium" href="#training" data-i18n="navTraining">Training</a>
+                <a class="block text-gray-600 dark:text-gray-300 hover:text-primary text-sm uppercase tracking-wide font-medium" href="#contact" data-i18n="navContact">Contact</a>
+                <a class="block bg-primary hover:bg-primary/90 text-white px-7 py-3 rounded-full text-sm font-medium transition-colors text-center shadow-lg shadow-primary/20" href="#contact" data-i18n="navBookAppointment">
+                    Book Appointment
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="relative pt-24 pb-12 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-in-up z-10 order-2 lg:order-1">
+                    <span class="inline-flex items-center py-1 px-3 rounded-full bg-secondary/20 dark:bg-secondary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6">
+                        <span class="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
+                        <span data-i18n="headerLocation">Based in Kraków</span>
+                    </span>
+                    <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.1] text-gray-900 dark:text-white mb-6">
+                        <span data-i18n="headerTitle">Wedding & Events</span> <br/>
+                        <span class="text-primary italic" data-i18n="headerSubtitle">Hair Styling</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg leading-relaxed font-light" data-i18n="headerDescription">
+                        Specializing in effortless, long-lasting hair styling for weddings, editorials, and special events. Bringing out your natural beauty with a touch of luxury in Kraków.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mb-10">
+                        <a class="bg-primary hover:bg-primary/90 text-white px-8 py-3.5 rounded-full text-sm font-medium transition-colors shadow-lg shadow-primary/20" href="#contact" data-i18n="headerBookButton">
+                            Book Appointment
+                        </a>
+                        <a class="bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 hover:border-primary text-gray-900 dark:text-white px-8 py-3.5 rounded-full text-sm font-medium transition-colors hover:bg-gray-50 dark:hover:bg-gray-800" href="#portfolio" data-i18n="headerViewPortfolio">
+                            View Portfolio
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 border-t border-gray-100 dark:border-gray-800 pt-8">
+                        <div>
+                            <p class="font-display text-2xl text-gray-900 dark:text-white">200+</p>
+                            <p class="text-xs text-gray-500 uppercase tracking-wider mt-1" data-i18n="headerBridesStyled">Brides Styled</p>
+                        </div>
+                        <div>
+                            <p class="font-display text-2xl text-gray-900 dark:text-white" data-i18n="headerStudioLocationTitle">Central</p>
+                            <p class="text-xs text-gray-500 uppercase tracking-wider mt-1" data-i18n="headerStudioLocation">Studio Location</p>
+                        </div>
+                        <div>
+                            <p class="font-display text-2xl text-gray-900 dark:text-white" data-i18n="headerOnLocationTitle">Mobile</p>
+                            <p class="text-xs text-gray-500 uppercase tracking-wider mt-1" data-i18n="headerOnLocation">On-location</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative fade-in-up delay-200 order-1 lg:order-2 h-[500px] lg:h-[650px] flex items-center justify-center">
+                    <div class="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-gray-200 dark:shadow-black/50 z-10">
+                        <img alt="Elegant bridal hairstyle close up with soft lighting" class="w-full h-full object-cover" style="object-position: center top;" src="img/portfolio/main.jpeg"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portfolio Section -->
+    <section class="py-20 bg-surface-light dark:bg-surface-dark transition-colors duration-300" id="portfolio">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="font-display text-4xl text-gray-900 dark:text-white mb-2" data-i18n="portfolioTitle">Portfolio</h2>
+                    <p class="text-gray-500 dark:text-gray-400" data-i18n="portfolioSubtitle">A curated selection of recent work.</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
+                <div class="group relative overflow-hidden rounded-2xl row-span-2 cursor-pointer portfolio-image" data-image="img/portfolio/portfolio_001.jpeg">
+                    <img alt="Classic Hollywood Waves" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top;" src="img/portfolio/portfolio_001.jpeg"/>
+                    <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/70 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wide text-gray-900 dark:text-white uppercase">Bohemian</div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-white font-display text-xl">Classic Hollywood Waves</h3>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer portfolio-image" data-image="img/portfolio/portfolio_032.jpeg">
+                    <img alt="Modern Blowout" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top;" src="img/portfolio/portfolio_032.jpeg"/>
+                    <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/70 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wide text-gray-900 dark:text-white uppercase">Chic</div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-white font-display text-xl">Modern Blowout</h3>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl row-span-2 cursor-pointer portfolio-image" data-image="img/portfolio/portfolio_025.jpeg">
+                    <img alt="Romantic Low Updo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top;" src="img/portfolio/portfolio_025.jpeg"/>
+                    <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/70 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wide text-gray-900 dark:text-white uppercase">Bridal</div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-white font-display text-xl">Romantic Low Updo</h3>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer portfolio-image" data-image="img/portfolio/portfolio_004.jpeg">
+                    <img alt="Red Carpet Curls" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top;" src="img/portfolio/portfolio_004.jpeg"/>
+                    <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/70 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wide text-gray-900 dark:text-white uppercase">Glam</div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-white font-display text-xl">Red Carpet Curls</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <a id="view-all-portfolio" class="inline-block border-b-2 border-gray-900 dark:border-white pb-1 text-sm font-bold uppercase tracking-widest hover:text-primary hover:border-primary transition-colors cursor-pointer" href="#" data-i18n="portfolioViewAll">
+                    View All Portfolio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-24 bg-background-light dark:bg-background-dark border-y border-gray-100 dark:border-gray-800 transition-colors duration-300" id="services">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-surface-dark rounded-3xl p-8 lg:p-12 shadow-sm border border-gray-100 dark:border-gray-800">
+                <div class="mb-16">
+                    <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-gray-900 dark:text-white leading-tight mb-4" data-i18n="servicesTitle">Services &amp; Pricing</h2>
+                    <p class="text-[0.85em] text-gray-500 dark:text-gray-400 leading-relaxed mb-4" data-i18n="servicesDescription">
+                        Experience the luxury of personalized styling at our central Kraków studio.
+                    </p>
+                </div>
+                <div id="services-pricing-content" class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 border-t border-gray-100 dark:border-gray-800 pt-12 items-start">
+                    <!-- Studio Styling, Bridal Styling, Add-ons & Travel columns rendered by JavaScript -->
+                </div>
+                <div class="mt-12 text-center">
+                    <a class="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-sm font-medium transition-colors shadow-lg shadow-primary/20" href="#contact" data-i18n="servicesBookLink">Book Appointment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wedding Packages Section -->
+    <section class="py-24 bg-gradient-to-b from-surface-light to-secondary/10 dark:from-surface-dark dark:to-background-dark/50 transition-colors duration-300" id="packages">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-primary font-semibold tracking-wider uppercase text-sm" data-i18n="packagesLabel">On-Location</span>
+                <h2 class="font-display text-4xl md:text-5xl text-gray-900 dark:text-white mt-2 mb-6" data-i18n="packagesTitle">Wedding Packages</h2>
+                <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto" data-i18n="packagesDescription">Comprehensive on-location services for you and your bridal party.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                <div class="lg:col-span-5 h-full">
+                    <div class="relative rounded-3xl overflow-hidden shadow-xl h-full min-h-[400px] md:min-h-[500px] hidden lg:block">
+                        <img alt="Bridal styling session photography" class="w-full h-full object-cover brightness-95 hover:scale-105 transition-transform duration-700" src="img/portfolio/wedding.jpeg"/>
+                        <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/60 to-transparent">
+                            <p class="text-white font-display text-2xl" data-i18n="packagesCaptureTitle">Capture perfection</p>
+                            <p class="text-white/80 text-sm mt-2" data-i18n="packagesCaptureDesc">Hairstyles designed to look flawless from every angle.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="packages-grid">
+                        <!-- Packages will be rendered here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            <p class="text-xs leading-relaxed text-gray-400 dark:text-gray-500 mt-8 text-center max-w-4xl mx-auto" data-i18n="packagesDisclaimer">Travel outside Kraków is priced individually, and trial hairstyles are not included. If fewer people use the service than the package covers, the package price remains unchanged. A deposit is required to secure the booking.</p>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="py-24 bg-surface-light dark:bg-surface-dark transition-colors duration-300 overflow-hidden" id="reviews">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative max-w-4xl mx-auto group min-h-[400px] flex items-center">
+                <button id="reviews-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-24 hidden lg:flex w-12 h-12 items-center justify-center rounded-full border border-gray-200 dark:border-gray-700 text-gray-400 hover:text-primary hover:border-primary transition-colors z-20 bg-white dark:bg-surface-dark shadow-sm">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </button>
+                <button id="reviews-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-24 hidden lg:flex w-12 h-12 items-center justify-center rounded-full border border-gray-200 dark:border-gray-700 text-gray-400 hover:text-primary hover:border-primary transition-colors z-20 bg-white dark:bg-surface-dark shadow-sm">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+                <div id="reviews-slider" class="flex overflow-x-auto snap-x snap-mandatory gap-8 pb-8 hide-scrollbar w-full">
+                    <!-- Reviews will be dynamically rendered by JavaScript -->
+                </div>
+                <div id="reviews-dots" class="absolute bottom-0 left-1/2 -translate-x-1/2 flex justify-center gap-3">
+                    <!-- Dots will be dynamically rendered by JavaScript -->
+                </div>
+            </div>
+            <div class="mt-16 text-center">
+                <a class="inline-flex items-center gap-3 bg-white dark:bg-surface-dark text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 px-8 py-4 rounded-full font-medium shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group" href="#" data-i18n="reviewsLeaveButton">
+                    Leave a Review
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-24 bg-background-light dark:bg-background-dark overflow-hidden border-t border-gray-100 dark:border-gray-800" id="about">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl aspect-video lg:aspect-square">
+                        <img alt="Olga styling a client" class="w-full h-full object-cover" src="img/Master Photo.jpeg"/>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="font-display text-4xl text-gray-900 dark:text-white mb-6" data-i18n="aboutTitle">About Me</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed" data-i18n="aboutText1">
+                        I'm Olga, a professional hair stylist specializing in elegant, long-lasting hairstyles created with a fully individual approach. I believe every woman is unique, and each hairstyle should reflect her personality, features, and the occasion. For me, styling is not just about technique — it's a thoughtful process where precision, aesthetics, and comfort come together to create a refined, effortless result.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="py-16 bg-background-light dark:bg-background-dark border-t border-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-xs font-bold tracking-[0.2em] text-primary uppercase mb-10">Brands I Am Working With</p>
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-70 hover:opacity-100 transition-opacity duration-500">
+                <span class="font-display text-4xl md:text-5xl text-gray-800 dark:text-gray-200 tracking-wide font-medium">ORIBE</span>
+                <span class="font-sans text-2xl md:text-3xl font-black text-gray-800 dark:text-gray-200 tracking-tighter uppercase">KEVIN.MURPHY</span>
+                <span class="font-sans text-3xl md:text-4xl font-light text-gray-800 dark:text-gray-200 tracking-widest uppercase">dyson</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Section -->
+    <section class="py-20 bg-surface-light dark:bg-surface-dark" id="training">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="relative rounded-3xl overflow-hidden min-h-[600px] flex items-center justify-center text-center shadow-2xl">
+                <video id="training-background-video" class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline preload="auto" webkit-playsinline>
+                    <source src="video/academy-training.mp4" type="video/mp4">
+                </video>
+                <div class="absolute inset-0 bg-black/50 z-10"></div>
+                <div class="relative z-20 max-w-2xl px-6 mx-auto">
+                    <span class="inline-block text-white/90 font-bold tracking-[0.2em] uppercase text-xs mb-4" data-i18n="trainingLabel">
+                        The Academy
+                    </span>
+                    <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-6" data-i18n="trainingTitle">
+                        Academy Training
+                    </h2>
+                    <p class="text-white/90 text-lg mb-10 leading-relaxed font-light max-w-lg mx-auto" data-i18n="trainingDescription">
+                        Hands-on hairstyling training for salons and independent stylists—built to improve technique, speed, and consistency. The program focuses on modern updos, long-lasting styling, clean sectioning and pinning, client workflow, and how to structure a service offer that converts. Sessions are tailored to the team's level: from strong foundations to advanced event work.
+                    </p>
+                    <p class="text-white/80 text-sm mb-10 hidden" data-i18n="trainingCaption"></p>
+                    <a class="inline-block bg-white text-gray-900 px-10 py-4 rounded-full font-bold uppercase tracking-wider text-xs hover:bg-gray-100 transition-colors shadow-xl" href="#contact" data-i18n="trainingButton">
+                        Enquire About Training
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-24 bg-background-light dark:bg-background-dark relative overflow-hidden" id="contact">
+        <div class="absolute inset-0 bg-secondary/5 dark:bg-white/5 mx-0 sm:mx-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-white dark:bg-surface-dark rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
+                <div class="lg:w-1/3 bg-gray-50 dark:bg-black/20 p-10 flex flex-col justify-between">
+                    <div>
+                        <h2 class="font-display text-3xl text-gray-900 dark:text-white mb-6">Get in Touch</h2>
+                        <div class="space-y-6 text-gray-600 dark:text-gray-400">
+                            <div class="flex items-start">
+                                <span class="material-symbols-outlined text-primary mr-3 mt-1">location_on</span>
+                                <div>
+                                    <p class="font-bold text-gray-900 dark:text-white">Studio Address</p>
+                                    <p>Ulica Długa 7/12</p>
+                                    <p>31-147 Kraków, Poland</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="material-symbols-outlined text-primary mr-3">email</span>
+                                <span>hello@olgathehair.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-10 rounded-2xl overflow-hidden h-48 bg-gray-200">
+                        <iframe allowfullscreen="" height="100%" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.050736868884!2d19.9392283157176!3d50.06647097942426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b0e00465371%3A0x6b47ce280b22231!2sD%C5%82uga%207%2C%2031-146%20Krak%C3%B3w%2C%20Poland!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" style="border:0;" width="100%"></iframe>
+                    </div>
+                </div>
+                <div class="lg:w-2/3 p-10 md:p-14">
+                    <p class="text-gray-500 dark:text-gray-400 mb-8">Currently booking for the 2024/2025 Wedding Season. Please fill out the form to inquire about availability.</p>
+                    <form id="contact-form" class="space-y-6" action="#" method="post" onsubmit="return false;">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="name">Name</label>
+                                <input class="w-full rounded-2xl border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-background-dark focus:ring-primary focus:border-primary transition-colors text-gray-900 dark:text-white py-3 px-4" id="name" placeholder="Jane Doe" type="text" required/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="email">Email</label>
+                                <input class="w-full rounded-2xl border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-background-dark focus:ring-primary focus:border-primary transition-colors text-gray-900 dark:text-white py-3 px-4" id="email" placeholder="jane@example.com" type="email" required/>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="date">Event Date</label>
+                                <input class="w-full rounded-2xl border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-background-dark focus:ring-primary focus:border-primary transition-colors text-gray-900 dark:text-white py-3 px-4" id="date" type="date"/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="service">Service Type</label>
+                                <select class="w-full rounded-2xl border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-background-dark focus:ring-primary focus:border-primary transition-colors text-gray-900 dark:text-white py-3 px-4" id="service">
+                                    <option>Bridal Package</option>
+                                    <option>Studio Styling</option>
+                                    <option>Photoshoot</option>
+                                    <option>Training Inquiry</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="message">Message</label>
+                            <textarea class="w-full rounded-2xl border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-background-dark focus:ring-primary focus:border-primary transition-colors text-gray-900 dark:text-white py-3 px-4" id="message" placeholder="Tell me about your hair length, inspiration, or location..." rows="4" required></textarea>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-4 rounded-2xl transition-colors shadow-lg shadow-primary/25" type="submit">
+                            Send Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-surface-light dark:bg-surface-dark pt-12 pb-8 border-t border-gray-100 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 dark:text-gray-500 gap-4">
+                <p data-i18n="footerCopyright">© 2026 Olga.TheHAIR</p>
+                <div class="flex space-x-6">
+                    <a class="hover:text-primary transition-colors" href="#" data-i18n="footerPrivacy">Privacy Policy</a>
+                    <a class="hover:text-primary transition-colors" href="#" data-i18n="footerTerms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Portfolio Gallery Modal -->
+    <div id="portfolio-gallery-modal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-sm overflow-y-auto">
+        <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <!-- Header -->
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="font-display text-3xl md:text-4xl text-white">Portfolio Gallery</h2>
+                    <button id="close-gallery" class="text-white hover:text-primary transition-colors p-2">
+                        <span class="material-symbols-outlined text-3xl">close</span>
+                    </button>
+                </div>
+                <!-- Gallery Grid -->
+                <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Images will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Screen Lightbox -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[60] hidden bg-black">
+        <div class="relative w-full h-full flex items-center justify-center p-4">
+            <!-- Close Button -->
+            <button id="close-lightbox" class="absolute top-4 right-4 text-white hover:text-primary transition-colors z-10 p-2">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
+            
+            <!-- Left Arrow -->
+            <button id="lightbox-prev" class="absolute left-4 text-white hover:text-primary transition-colors z-10 p-2">
+                <span class="material-symbols-outlined text-5xl">chevron_left</span>
+            </button>
+            
+            <!-- Right Arrow -->
+            <button id="lightbox-next" class="absolute right-4 text-white hover:text-primary transition-colors z-10 p-2">
+                <span class="material-symbols-outlined text-5xl">chevron_right</span>
+            </button>
+            
+            <!-- Image Container -->
+            <div class="max-w-7xl mx-auto w-full h-full flex items-center justify-center">
+                <img id="lightbox-image" src="" alt="Portfolio image" class="max-w-full max-h-full object-contain">
+            </div>
+            
+            <!-- Image Counter -->
+            <div id="lightbox-counter" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white text-sm">
+                <span id="current-index">1</span> / <span id="total-images">1</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
