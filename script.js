@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Language button event listeners (replacing inline onclick)
+    // Language button event listeners
     const langBtnEn = document.getElementById('lang-btn-en');
     const langBtnPl = document.getElementById('lang-btn-pl');
     if (langBtnEn) {
@@ -54,30 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setLanguage(currentLanguage);
     }
     
-    // Contact form handling
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                date: document.getElementById('date').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
-            };
-            
-            // Here you would typically send the data to a server
-            // For now, we'll just show an alert
-            console.log('Form submitted:', formData);
-            alert('Thank you for your inquiry! We will get back to you soon.');
-            
-            // Reset form
-            contactForm.reset();
-        });
-    }
     
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -202,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         `;
                         }).join('')}
                     </ul>
-                    <a class="${buttonClass}" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer">${button}</a>
+                    <a class="${buttonClass}" href="#contact">${button}</a>
                 </div>
             `;
         }).join('');
@@ -312,18 +288,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
     
     // Portfolio Gallery Modal: main image + preview images (001, 032, 025, 004) + all others 5–44 (skip 25, 32)
-    const portfolioImages = ['img/main.webp'];
-    portfolioImages.push('img/portfolio_001.webp', 'img/portfolio_032.webp', 'img/portfolio_025.webp', 'img/portfolio_004.webp');
+    const portfolioImages = ['img/portfolio/main.jpeg'];
+    portfolioImages.push('img/portfolio/portfolio_001.jpeg', 'img/portfolio/portfolio_032.jpeg', 'img/portfolio/portfolio_025.jpeg', 'img/portfolio/portfolio_004.jpeg');
     const previewIds = new Set([1, 4, 25, 32]);
     for (let i = 5; i <= 44; i++) {
         if (previewIds.has(i)) continue;
-        portfolioImages.push(`img/portfolio_${String(i).padStart(3, '0')}.webp`);
+        portfolioImages.push(`img/portfolio/portfolio_${String(i).padStart(3, '0')}.jpeg`);
     }
     
     // All portfolio images including main + preview ones for lightbox navigation
-    const allPortfolioImages = ['img/main.webp'];
+    const allPortfolioImages = ['img/portfolio/main.jpeg'];
     for (let i = 1; i <= 44; i++) {
-        allPortfolioImages.push(`img/portfolio_${String(i).padStart(3, '0')}.webp`);
+        allPortfolioImages.push(`img/portfolio/portfolio_${String(i).padStart(3, '0')}.jpeg`);
     }
     
     const galleryModal = document.getElementById('portfolio-gallery-modal');
@@ -346,6 +322,9 @@ document.addEventListener('DOMContentLoaded', function() {
             img.className = 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-110';
             img.style.objectPosition = 'center top';
             img.loading = 'lazy';
+            img.decoding = 'async';
+            img.width = 800;
+            img.height = 800;
             
             imgContainer.appendChild(img);
             galleryGrid.appendChild(imgContainer);
@@ -514,9 +493,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Render review slides
+        // Render review slides with data attribute for reliable selection
         reviewsSlider.innerHTML = reviews.map((review, index) => `
-            <div class="snap-center shrink-0 w-full flex flex-col items-center justify-center text-center mx-auto px-4 min-h-[400px]">
+            <div class="snap-center shrink-0 w-full flex flex-col items-center justify-center text-center mx-auto px-4 min-h-[400px]" data-review-slide="true" data-slide-index="${index}">
                 <blockquote class="font-display text-2xl md:text-3xl leading-relaxed text-gray-800 dark:text-gray-100 mb-8 max-w-2xl">"${review.text}"</blockquote>
                 <cite class="not-italic text-sm font-bold tracking-widest uppercase text-primary">${review.author}</cite>
             </div>
@@ -527,8 +506,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="w-2 h-2 rounded-full ${index === 0 ? 'bg-primary' : 'bg-gray-200 dark:bg-gray-700'} cursor-pointer transition-colors" data-review-index="${index}"></div>
         `).join('');
         
-        // Initialize slider functionality
-        initReviewsSlider(reviews.length);
+        // Initialize slider functionality AFTER DOM insertion
+        // Use requestAnimationFrame to ensure DOM is fully updated
+        requestAnimationFrame(() => {
+            initReviewsSlider(reviews.length);
+        });
     }
     
     // Store slider state globally to prevent multiple initializations
@@ -561,26 +543,40 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!reviewsSlider || !reviewsDots) return;
         
-        const reviewSlides = reviewsSlider.querySelectorAll('div[class*="snap-center"]');
+        // Use data attribute for reliable selection
+        const reviewSlides = reviewsSlider.querySelectorAll('[data-review-slide="true"]');
         const dots = reviewsDots.querySelectorAll('div');
+        
+        // Safety check: if no slides found, set up MutationObserver to re-init when slides appear
+        if (reviewSlides.length === 0) {
+            const observer = new MutationObserver((mutations, obs) => {
+                const slides = reviewsSlider.querySelectorAll('[data-review-slide="true"]');
+                if (slides.length > 0) {
+                    obs.disconnect();
+                    initReviewsSlider(slides.length);
+                }
+            });
+            observer.observe(reviewsSlider, { childList: true, subtree: true });
+            return;
+        }
+        
         reviewsSliderState.currentSlide = 0;
 
         function updateSlider(index) {
             if (index < 0 || index >= reviewSlides.length) return;
             
-            // Calculate scroll position - each slide is w-full (100% of container width)
-            // Account for gap-8 (2rem = 32px) between slides
-            const containerWidth = reviewsSlider.offsetWidth;
-            const gap = 32; // gap-8 = 2rem = 32px
-            const scrollPosition = index * (containerWidth + gap);
+            // Use offsetLeft for accurate scroll position relative to container
+            const targetSlide = reviewSlides[index];
+            if (!targetSlide) return;
             
-            // Scroll the slider container, not the page
+            // Calculate scroll position: slide's offsetLeft relative to container
+            const scrollPosition = targetSlide.offsetLeft - reviewsSlider.offsetLeft;
+            
             reviewsSlider.scrollTo({
                 left: scrollPosition,
                 behavior: 'smooth'
             });
             
-            // Update dots
             dots.forEach((dot, i) => {
                 if (i === index) {
                     dot.classList.remove('bg-gray-200', 'dark:bg-gray-700');
@@ -605,7 +601,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function startAutoSlide() {
-            cleanupReviewsSlider(); // Clear any existing interval
+            stopAutoSlide();
             reviewsSliderState.interval = setInterval(nextSlide, 3000);
         }
 
@@ -622,29 +618,21 @@ document.addEventListener('DOMContentLoaded', function() {
             reviewsSliderState.handlers.push({ element, event, handler });
         }
 
-        // Manual navigation - ensure buttons exist and attach listeners properly
+        // Manual navigation
         if (reviewsNext) {
-            const nextHandler = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                if (reviewSlides.length > 0) {
-                    stopAutoSlide();
-                    nextSlide();
-                    startAutoSlide();
-                }
+            const nextHandler = () => {
+                stopAutoSlide();
+                nextSlide();
+                startAutoSlide();
             };
             addTrackedListener(reviewsNext, 'click', nextHandler);
         }
 
         if (reviewsPrev) {
-            const prevHandler = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                if (reviewSlides.length > 0) {
-                    stopAutoSlide();
-                    prevSlide();
-                    startAutoSlide();
-                }
+            const prevHandler = () => {
+                stopAutoSlide();
+                prevSlide();
+                startAutoSlide();
             };
             addTrackedListener(reviewsPrev, 'click', prevHandler);
         }
@@ -710,7 +698,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    safeRenderReviews();
+    // Ensure DOM is ready before rendering
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', safeRenderReviews);
+    } else {
+        // DOM already loaded, use requestAnimationFrame to ensure translations are ready
+        requestAnimationFrame(safeRenderReviews);
+    }
     
     // Make renderReviews available globally for language switching
     window.renderReviews = safeRenderReviews;

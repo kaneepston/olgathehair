@@ -169,9 +169,9 @@ const translations = {
         brandsTitle: "Brands I Am Working With",
         
         // Training
-        trainingLabel: "The Academy",
-        trainingTitle: "Academy Training",
-        trainingDescription: "Hands-on hairstyling training for salons and independent stylists—built to improve technique, speed, and consistency. The program focuses on modern updos, long-lasting styling, clean sectioning and pinning, client workflow, and how to structure a service offer that converts. Sessions are tailored to the team's level: from strong foundations to advanced event work.",
+        trainingLabel: "",
+        trainingTitle: "Training",
+        trainingDescription: "Olga offers on-demand professional training for hair stylists and salon teams, delivered as in-person, hands-on sessions. The training focuses on strong technical foundations, work aesthetics, trend awareness, and a professional approach to styling. Sessions are tailored to the team's level and cover updo techniques, client workflow, and building a clear, confident service offering.",
         trainingCaption: "",
         trainingButton: "Enquire About Training",
         
@@ -376,14 +376,14 @@ const translations = {
         brandsTitle: "Marki, z Którymi Współpracuję",
         
         // Training
-        trainingLabel: "Akademia",
-        trainingTitle: "Szkolenia Akademii",
-        trainingDescription: "Szkolenia z upięć i stylizacji dla salonów oraz niezależnych stylistek—nastawione na technikę, tempo pracy i powtarzalną jakość. Program obejmuje nowoczesne upięcia, trwałe stylizacje, precyzyjne sekcjonowanie i pracę ze wsuwkami, obsługę klientki oraz budowanie oferty usług, która sprzedaje. Zajęcia są dopasowane do poziomu: od solidnych podstaw po zaawansowane fryzury okolicznościowe.",
-        trainingCaption: "Kraków + wyjazdowo dla zespołów (na zapytanie).",
+        trainingLabel: "",
+        trainingTitle: "Szkolenia",
+        trainingDescription: "Olga prowadzi profesjonalne szkolenia na zamówienie dla stylistów fryzur oraz zespołów salonowych, realizowane w formie praktycznych zajęć stacjonarnych. Szkolenia koncentrują się na solidnych podstawach technicznych, estetyce pracy, świadomości trendów oraz profesjonalnym podejściu do zawodu. Program jest dopasowany do poziomu zespołu i obejmuje techniki upięć, pracę z klientką oraz budowanie spójnej i pewnej oferty usług.",
+        trainingCaption: "",
         trainingButton: "Zapytaj o Szkolenie",
         
         // Contact
-        contactTitle: "Skontaktuj Się",
+        contactTitle: "Skontaktuj się",
         contactStudioAddress: "Adres Studio",
         contactAddress1: "Ulica Długa 7/12",
         contactAddress2: "31-147 Kraków, Polska",
