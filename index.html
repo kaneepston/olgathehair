@@ -283,11 +283,11 @@
     <!-- Training Section -->
     <section class="py-20 bg-surface-light dark:bg-surface-dark" id="training">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="relative rounded-3xl overflow-hidden min-h-[600px] flex items-center justify-center text-center shadow-2xl">
-                <video id="training-background-video" class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline preload="auto" webkit-playsinline controls="false" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback">
+            <div class="relative rounded-3xl overflow-hidden min-h-[600px] flex items-center justify-center text-center shadow-2xl" style="position: relative; overflow: hidden;">
+                <video id="training-background-video" class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline preload="auto" webkit-playsinline controls="false" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback" style="pointer-events: none; -webkit-appearance: none;">
                     <source src="video/academy-training.mp4" type="video/mp4">
                 </video>
-                <div class="absolute inset-0 bg-black/50 z-10"></div>
+                <div class="absolute inset-0 bg-black/50 z-10" style="pointer-events: none;"></div>
                 <div class="relative z-20 max-w-2xl px-6 mx-auto">
                     <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-6" data-i18n="trainingTitle">
                         Training
@@ -297,7 +297,7 @@
                     </p>
                     <p class="text-white/80 text-sm mb-10 hidden" data-i18n="trainingCaption"></p>
                     <a class="inline-block bg-white text-gray-900 px-10 py-4 rounded-full font-bold uppercase tracking-wider text-xs hover:bg-gray-100 transition-colors shadow-xl" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer" data-i18n="trainingButton">
-                        Enquire About Training
+                        Request Training
                     </a>
                 </div>
             </div>
@@ -353,8 +353,8 @@
             <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 dark:text-gray-500 gap-4">
                 <p data-i18n="footerCopyright">© 2026 Olga.TheHAIR</p>
                 <div class="flex space-x-6">
-                    <a class="hover:text-primary transition-colors" href="#" data-i18n="footerPrivacy">Privacy Policy</a>
-                    <a class="hover:text-primary transition-colors" href="#" data-i18n="footerTerms">Terms of Service</a>
+                    <a class="hover:text-primary transition-colors" href="privacy-policy.html" data-i18n="footerPrivacy">Privacy Policy</a>
+                    <a class="hover:text-primary transition-colors" href="terms-of-service.html" data-i18n="footerTerms">Terms of Service</a>
                 </div>
             </div>
         </div>

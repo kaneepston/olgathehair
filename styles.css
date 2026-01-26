@@ -53,8 +53,18 @@ img {
 /* Hide video controls and overlays */
 #training-background-video {
     pointer-events: none;
+    -webkit-appearance: none;
+    appearance: none;
+    object-fit: cover;
 }
 
+/* Hide overlays on video container */
+#training-background-video + *,
+section#training video + * {
+    pointer-events: none !important;
+}
+
+/* Hide all webkit media controls */
 #training-background-video::-webkit-media-controls {
     display: none !important;
 }
@@ -75,8 +85,82 @@ img {
     display: none !important;
 }
 
-/* Hide any browser overlays or click-to-play messages */
+#training-background-video::-webkit-media-controls-overlay-play-button {
+    display: none !important;
+}
+
+#training-background-video::-webkit-media-controls-overlay-enclosure {
+    display: none !important;
+}
+
+/* Hide any browser overlays, banners, or click-to-play messages */
 #training-background-video::before,
 #training-background-video::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Hide any overlay elements that might appear */
+#training-background-video * {
+    pointer-events: none !important;
+}
+
+/* Hide any click-to-play or analyze overlays */
+video::-webkit-media-controls-overlay {
+    display: none !important;
+}
+
+/* Additional rules to hide browser-specific overlays */
+#training-background-video::-webkit-media-controls-timeline {
+    display: none !important;
+}
+
+#training-background-video::-webkit-media-controls-current-time-display {
+    display: none !important;
+}
+
+#training-background-video::-webkit-media-controls-time-remaining-display {
+    display: none !important;
+}
+
+#training-background-video::-webkit-media-controls-mute-button {
+    display: none !important;
+}
+
+#training-background-video::-webkit-media-controls-volume-slider {
+    display: none !important;
+}
+
+#training-background-video::-webkit-media-controls-fullscreen-button {
+    display: none !important;
+}
+
+/* Hide any click-to-play or analyze banners/overlays */
+#training-background-video::-webkit-media-controls-overlay-play-button {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Hide any browser-generated overlays or banners */
+section#training video::after,
+section#training video::before,
+section#training > div > video::after,
+section#training > div > video::before {
+    display: none !important;
+    content: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Ensure no overlays appear on the video container */
+section#training > div > div:has(video) {
+    overflow: hidden;
+}
+
+/* Additional rule to hide any overlay elements */
+#training-background-video[style*="overlay"],
+#training-background-video + div[class*="overlay"],
+#training-background-video + div[style*="overlay"] {
     display: none !important;
 }
