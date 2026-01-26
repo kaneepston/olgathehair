@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         `;
                         }).join('')}
                     </ul>
-                    <a class="${buttonClass}" href="#contact">${button}</a>
+                    <a class="${buttonClass}" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer">${button}</a>
                 </div>
             `;
         }).join('');

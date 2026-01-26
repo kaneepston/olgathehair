@@ -3,38 +3,15 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'self' https://www.google.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'self' https://www.google.com;">
     <title>Olga.TheHAIR | Kraków Wedding & Event Hairstylist</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#A88F7F",
-                        secondary: "#D4C5BB", 
-                        "background-light": "#F9F6F2",
-                        "background-dark": "#1a1816", 
-                        "surface-light": "#FFFFFF",
-                        "surface-dark": "#262320",
-                        "text-light": "#333333",
-                        "text-dark": "#E5E5E5",
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Playfair Display', 'serif'],
-                    },
-                    borderRadius: {
-                        DEFAULT: "1rem",
-                        'xl': "1rem",
-                        '2xl': "1.5rem",
-                        '3xl': "1.5rem",
-                    },
-                },
-            },
-        };
-    </script>
+    <link rel="stylesheet" href="styles-tailwind.css">
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="img/main.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="img/portfolio_001.webp">
+    <link rel="preload" as="image" href="img/portfolio_032.webp">
+    <link rel="preload" as="image" href="img/portfolio_025.webp">
+    <link rel="preload" as="image" href="img/portfolio_004.webp">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="styles.css?v=1.0.0">
@@ -49,8 +26,8 @@
         <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="https://www.facebook.com/p/OlgaTheHair-61567158952679/" target="_blank" rel="noopener noreferrer" title="Facebook">
             <span class="font-bold text-xs">FB</span>
         </a>
-        <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="mailto:olga.thehair@gmail.com" title="Email">
-            <span class="material-symbols-outlined text-sm">mail</span>
+        <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+            <span class="font-bold text-xs">WA</span>
         </a>
     </div>
 
@@ -71,7 +48,7 @@
                         <button id="lang-btn-en" class="lang-btn-en bg-white dark:bg-surface-dark text-primary dark:text-white shadow-sm rounded-full px-4 py-1.5 text-xs font-bold transition-all">EN</button>
                         <button id="lang-btn-pl" class="lang-btn-pl text-gray-500 dark:text-gray-400 hover:text-primary px-4 py-1.5 text-xs font-medium transition-colors">PL</button>
                     </div>
-                    <a class="bg-primary hover:bg-primary/90 text-white px-7 py-3 rounded-full text-sm font-medium transition-colors shadow-lg shadow-primary/20" href="#contact" data-i18n="navBookAppointment">
+                    <a class="bg-primary hover:bg-primary/90 text-white px-7 py-3 rounded-full text-sm font-medium transition-colors shadow-lg shadow-primary/20" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer" data-i18n="navBookAppointment">
                         Book Appointment
                     </a>
                 </div>
@@ -90,7 +67,7 @@
                 <a class="block text-gray-600 dark:text-gray-300 hover:text-primary text-sm uppercase tracking-wide font-medium" href="#packages" data-i18n="navWeddings">Weddings</a>
                 <a class="block text-gray-600 dark:text-gray-300 hover:text-primary text-sm uppercase tracking-wide font-medium" href="#training" data-i18n="navTraining">Training</a>
                 <a class="block text-gray-600 dark:text-gray-300 hover:text-primary text-sm uppercase tracking-wide font-medium" href="#contact" data-i18n="navContact">Contact</a>
-                <a class="block bg-primary hover:bg-primary/90 text-white px-7 py-3 rounded-full text-sm font-medium transition-colors text-center shadow-lg shadow-primary/20" href="#contact" data-i18n="navBookAppointment">
+                <a class="block bg-primary hover:bg-primary/90 text-white px-7 py-3 rounded-full text-sm font-medium transition-colors text-center shadow-lg shadow-primary/20" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer" data-i18n="navBookAppointment">
                     Book Appointment
                 </a>
             </div>
@@ -114,7 +91,7 @@
                         Specializing in effortless, long-lasting hair styling for weddings, editorials, and special events. Bringing out your natural beauty with a touch of luxury in Kraków.
                     </p>
                     <div class="flex flex-wrap gap-4 mb-10">
-                        <a class="bg-primary hover:bg-primary/90 text-white px-8 py-3.5 rounded-full text-sm font-medium transition-colors shadow-lg shadow-primary/20" href="#contact" data-i18n="headerBookButton">
+                        <a class="bg-primary hover:bg-primary/90 text-white px-8 py-3.5 rounded-full text-sm font-medium transition-colors shadow-lg shadow-primary/20" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer" data-i18n="headerBookButton">
                             Book Appointment
                         </a>
                         <a class="bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 hover:border-primary text-gray-900 dark:text-white px-8 py-3.5 rounded-full text-sm font-medium transition-colors hover:bg-gray-50 dark:hover:bg-gray-800" href="#portfolio" data-i18n="headerViewPortfolio">
@@ -138,7 +115,7 @@
                 </div>
                 <div class="relative fade-in-up delay-200 order-1 lg:order-2 h-[500px] lg:h-[650px] flex items-center justify-center">
                     <div class="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-gray-200 dark:shadow-black/50 z-10">
-                        <img alt="Elegant bridal hairstyle close up with soft lighting" class="w-full h-full object-cover" style="object-position: center top;" src="img/main.webp" loading="lazy" decoding="async"/>
+                        <img alt="Elegant bridal hairstyle close up with soft lighting" class="w-full h-full object-cover" style="object-position: center top;" src="img/main.webp" fetchpriority="high" decoding="async"/>
                     </div>
                 </div>
             </div>
@@ -163,7 +140,7 @@
                     </div>
                 </div>
                 <div class="group relative overflow-hidden rounded-2xl cursor-pointer portfolio-image" data-image="img/portfolio_032.webp">
-                    <img alt="Modern Blowout" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top;" src="img/portfolio_032.webp" loading="lazy"/>
+                    <img alt="Modern Blowout" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top;" src="img/portfolio_032.webp"/>
                     <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/70 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wide text-gray-900 dark:text-white uppercase">Chic</div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                         <h3 class="text-white font-display text-xl">Modern Blowout</h3>
@@ -177,7 +154,7 @@
                     </div>
                 </div>
                 <div class="group relative overflow-hidden rounded-2xl cursor-pointer portfolio-image" data-image="img/portfolio_004.webp">
-                    <img alt="Red Carpet Curls" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top;" src="img/portfolio_004.webp" loading="lazy"/>
+                    <img alt="Red Carpet Curls" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top;" src="img/portfolio_004.webp"/>
                     <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/70 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wide text-gray-900 dark:text-white uppercase">Glam</div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                         <h3 class="text-white font-display text-xl">Red Carpet Curls</h3>
@@ -206,7 +183,7 @@
                     <!-- Studio Styling, Bridal Styling, Add-ons & Travel columns rendered by JavaScript -->
                 </div>
                 <div class="mt-12 text-center">
-                    <a class="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-sm font-medium transition-colors shadow-lg shadow-primary/20" href="#contact" data-i18n="servicesBookLink">Book Appointment</a>
+                    <a class="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-sm font-medium transition-colors shadow-lg shadow-primary/20" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer" data-i18n="servicesBookLink">Book Appointment</a>
                 </div>
             </div>
         </div>
@@ -315,7 +292,7 @@
                         Hands-on hairstyling training for salons and independent stylists—built to improve technique, speed, and consistency. The program focuses on modern updos, long-lasting styling, clean sectioning and pinning, client workflow, and how to structure a service offer that converts. Sessions are tailored to the team's level: from strong foundations to advanced event work.
                     </p>
                     <p class="text-white/80 text-sm mb-10 hidden" data-i18n="trainingCaption"></p>
-                    <a class="inline-block bg-white text-gray-900 px-10 py-4 rounded-full font-bold uppercase tracking-wider text-xs hover:bg-gray-100 transition-colors shadow-xl" href="#contact" data-i18n="trainingButton">
+                    <a class="inline-block bg-white text-gray-900 px-10 py-4 rounded-full font-bold uppercase tracking-wider text-xs hover:bg-gray-100 transition-colors shadow-xl" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer" data-i18n="trainingButton">
                         Enquire About Training
                     </a>
                 </div>
@@ -340,7 +317,7 @@
                             </div>
                             <div class="flex items-center">
                                 <span class="material-symbols-outlined text-primary mr-3">phone</span>
-                                <a class="hover:text-primary transition-colors" href="tel:+48732815998">+48 732 815 998</a>
+                                <a class="hover:text-primary transition-colors" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer">+48 732 815 998</a>
                             </div>
                             <div class="flex items-center">
                                 <span class="material-symbols-outlined text-primary mr-3">email</span>
