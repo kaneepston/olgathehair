@@ -31,6 +31,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Language button event listeners (replacing inline onclick)
+    const langBtnEn = document.getElementById('lang-btn-en');
+    const langBtnPl = document.getElementById('lang-btn-pl');
+    if (langBtnEn) {
+        langBtnEn.addEventListener('click', function() {
+            if (typeof setLanguage !== 'undefined') {
+                setLanguage('en');
+            }
+        });
+    }
+    if (langBtnPl) {
+        langBtnPl.addEventListener('click', function() {
+            if (typeof setLanguage !== 'undefined') {
+                setLanguage('pl');
+            }
+        });
+    }
+    
     // Initialize translations
     if (typeof setLanguage !== 'undefined') {
         setLanguage(currentLanguage);
@@ -327,6 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
             img.alt = `Portfolio image ${index + 1}`;
             img.className = 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-110';
             img.style.objectPosition = 'center top';
+            img.loading = 'lazy';
             
             imgContainer.appendChild(img);
             galleryGrid.appendChild(imgContainer);
