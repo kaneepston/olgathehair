@@ -42,14 +42,14 @@
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 relative">
     <!-- Social Media Sidebar -->
     <div class="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 hidden lg:flex flex-col gap-3 p-3 bg-white/90 dark:bg-surface-dark/90 backdrop-blur-md rounded-l-2xl shadow-xl border-y border-l border-gray-100 dark:border-gray-800">
-        <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="#" title="Instagram">
+        <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="https://www.instagram.com/olga.thehair/" target="_blank" rel="noopener noreferrer" title="Instagram">
             <span class="font-bold text-xs">IG</span>
         </a>
-        <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="#" title="Facebook">
+        <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="https://www.facebook.com/p/OlgaTheHair-61567158952679/" target="_blank" rel="noopener noreferrer" title="Facebook">
             <span class="font-bold text-xs">FB</span>
         </a>
-        <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="#" title="Google Reviews">
-            <span class="font-bold text-xs">G+</span>
+        <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="mailto:olga.thehair@gmail.com" title="Email">
+            <span class="material-symbols-outlined text-sm">mail</span>
         </a>
     </div>
 
@@ -299,7 +299,7 @@
     <section class="py-20 bg-surface-light dark:bg-surface-dark" id="training">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="relative rounded-3xl overflow-hidden min-h-[600px] flex items-center justify-center text-center shadow-2xl">
-                <video id="training-background-video" class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline preload="auto" webkit-playsinline>
+                <video id="training-background-video" class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline preload="auto" webkit-playsinline controls="false" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback">
                     <source src="video/academy-training.mp4" type="video/mp4">
                 </video>
                 <div class="absolute inset-0 bg-black/50 z-10"></div>
@@ -331,17 +331,19 @@
                     <div>
                         <h2 class="font-display text-3xl text-gray-900 dark:text-white mb-6">Get in Touch</h2>
                         <div class="space-y-6 text-gray-600 dark:text-gray-400">
-                            <div class="flex items-start">
-                                <span class="material-symbols-outlined text-primary mr-3 mt-1">location_on</span>
-                                <div>
-                                    <p class="font-bold text-gray-900 dark:text-white">Studio Address</p>
-                                    <p>Ulica Długa 7/12</p>
-                                    <p>31-147 Kraków, Poland</p>
-                                </div>
+                            <div class="flex items-center">
+                                <span class="material-symbols-outlined text-primary mr-3">location_on</span>
+                                <a class="hover:text-primary transition-colors" href="https://www.google.com/maps/search/?api=1&query=Ulica+Długa+7,+31-147+Kraków,+Poland" target="_blank" rel="noopener noreferrer">
+                                    Ulica Długa 7, 31-147 Kraków, Poland
+                                </a>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="material-symbols-outlined text-primary mr-3">phone</span>
+                                <a class="hover:text-primary transition-colors" href="tel:+48732815998">+48 732 815 998</a>
                             </div>
                             <div class="flex items-center">
                                 <span class="material-symbols-outlined text-primary mr-3">email</span>
-                                <span>hello@olgathehair.com</span>
+                                <a class="hover:text-primary transition-colors" href="mailto:olga.thehair@gmail.com">olga.thehair@gmail.com</a>
                             </div>
                         </div>
                     </div>
@@ -350,7 +352,7 @@
                     </div>
                 </div>
                 <div class="lg:w-2/3 p-10 md:p-14">
-                    <p class="text-gray-500 dark:text-gray-400 mb-8">Currently booking for the 2024/2025 Wedding Season. Please fill out the form to inquire about availability.</p>
+                    <p class="text-gray-500 dark:text-gray-400 mb-8" data-i18n="contactDescription">Please fill out the form to inquire about availability.</p>
                     <form id="contact-form" class="space-y-6" action="#" method="post" onsubmit="return false;">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>

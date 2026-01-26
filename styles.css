@@ -49,3 +49,34 @@ img {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+/* Hide video controls and overlays */
+#training-background-video {
+    pointer-events: none;
+}
+
+#training-background-video::-webkit-media-controls {
+    display: none !important;
+}
+
+#training-background-video::-webkit-media-controls-enclosure {
+    display: none !important;
+}
+
+#training-background-video::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+#training-background-video::-webkit-media-controls-play-button {
+    display: none !important;
+}
+
+#training-background-video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+}
+
+/* Hide any browser overlays or click-to-play messages */
+#training-background-video::before,
+#training-background-video::after {
+    display: none !important;
+}

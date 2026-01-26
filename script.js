@@ -549,14 +549,19 @@ document.addEventListener('DOMContentLoaded', function() {
         function updateSlider(index) {
             if (index < 0 || index >= reviewSlides.length) return;
             
-            const slideWidth = reviewsSlider.offsetWidth;
-            const scrollPosition = index * slideWidth;
+            // Calculate scroll position - each slide is w-full (100% of container width)
+            // Account for gap-8 (2rem = 32px) between slides
+            const containerWidth = reviewsSlider.offsetWidth;
+            const gap = 32; // gap-8 = 2rem = 32px
+            const scrollPosition = index * (containerWidth + gap);
             
+            // Scroll the slider container, not the page
             reviewsSlider.scrollTo({
                 left: scrollPosition,
                 behavior: 'smooth'
             });
             
+            // Update dots
             dots.forEach((dot, i) => {
                 if (i === index) {
                     dot.classList.remove('bg-gray-200', 'dark:bg-gray-700');
@@ -598,21 +603,29 @@ document.addEventListener('DOMContentLoaded', function() {
             reviewsSliderState.handlers.push({ element, event, handler });
         }
 
-        // Manual navigation
+        // Manual navigation - ensure buttons exist and attach listeners properly
         if (reviewsNext) {
-            const nextHandler = () => {
-                stopAutoSlide();
-                nextSlide();
-                startAutoSlide();
+            const nextHandler = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (reviewSlides.length > 0) {
+                    stopAutoSlide();
+                    nextSlide();
+                    startAutoSlide();
+                }
             };
             addTrackedListener(reviewsNext, 'click', nextHandler);
         }
 
         if (reviewsPrev) {
-            const prevHandler = () => {
-                stopAutoSlide();
-                prevSlide();
-                startAutoSlide();
+            const prevHandler = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (reviewSlides.length > 0) {
+                    stopAutoSlide();
+                    prevSlide();
+                    startAutoSlide();
+                }
             };
             addTrackedListener(reviewsPrev, 'click', prevHandler);
         }
