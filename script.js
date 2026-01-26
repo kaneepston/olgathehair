@@ -294,18 +294,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
     
     // Portfolio Gallery Modal: main image + preview images (001, 032, 025, 004) + all others 5–44 (skip 25, 32)
-    const portfolioImages = ['img/portfolio/main.jpeg'];
-    portfolioImages.push('img/portfolio/portfolio_001.jpeg', 'img/portfolio/portfolio_032.jpeg', 'img/portfolio/portfolio_025.jpeg', 'img/portfolio/portfolio_004.jpeg');
+    const portfolioImages = ['img/main.webp'];
+    portfolioImages.push('img/portfolio_001.webp', 'img/portfolio_032.webp', 'img/portfolio_025.webp', 'img/portfolio_004.webp');
     const previewIds = new Set([1, 4, 25, 32]);
     for (let i = 5; i <= 44; i++) {
         if (previewIds.has(i)) continue;
-        portfolioImages.push(`img/portfolio/portfolio_${String(i).padStart(3, '0')}.jpeg`);
+        portfolioImages.push(`img/portfolio_${String(i).padStart(3, '0')}.webp`);
     }
     
     // All portfolio images including main + preview ones for lightbox navigation
-    const allPortfolioImages = ['img/portfolio/main.jpeg'];
+    const allPortfolioImages = ['img/main.webp'];
     for (let i = 1; i <= 44; i++) {
-        allPortfolioImages.push(`img/portfolio/portfolio_${String(i).padStart(3, '0')}.jpeg`);
+        allPortfolioImages.push(`img/portfolio_${String(i).padStart(3, '0')}.webp`);
     }
     
     const galleryModal = document.getElementById('portfolio-gallery-modal');
