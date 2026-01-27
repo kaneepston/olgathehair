@@ -195,3 +195,19 @@ section#training > div > div:has(video) {
 #training-background-video + div[style*="overlay"] {
     display: none !important;
 }
+
+/* Ensure bullet points are visible in privacy policy and terms of service */
+ul.list-disc,
+ul[class*="list-disc"] {
+    list-style-type: disc !important;
+    list-style-position: outside !important;
+    padding-left: 1.5rem !important;
+}
+
+ul.list-disc li,
+ul[class*="list-disc"] li {
+    display: list-item !important;
+    list-style-type: disc !important;
+    margin-left: 0 !important;
+    padding-left: 0.5rem !important;
+}
