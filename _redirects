@@ -1,0 +1,6 @@
+# Netlify redirects
+# Redirect root to Polish version
+/ /pl/ 301
+
+# Redirect old index.html to Polish version
+/index.html /pl/ 301

@@ -31,28 +31,132 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Language button event listeners
-    const langBtnEn = document.getElementById('lang-btn-en');
-    const langBtnPl = document.getElementById('lang-btn-pl');
-    if (langBtnEn) {
-        langBtnEn.addEventListener('click', function() {
-            if (typeof setLanguage !== 'undefined') {
-                setLanguage('en');
-            }
-        });
-    }
-    if (langBtnPl) {
-        langBtnPl.addEventListener('click', function() {
-            if (typeof setLanguage !== 'undefined') {
-                setLanguage('pl');
-            }
-        });
+    // Determine current language from URL path - more robust detection
+    // Make it globally accessible for rendering functions
+    window.getCurrentLanguage = function() {
+        const currentPath = window.location.pathname;
+        const currentUrl = window.location.href;
+        
+        // Check for explicit language paths first (most specific check)
+        // Check pathname first - most reliable
+        // Use indexOf to be more precise
+        if (currentPath.indexOf('/en/') === 0 || currentPath === '/en' || currentPath === '/en/index.html' || currentPath.indexOf('/en') === 0) {
+            return 'en';
+        }
+        if (currentPath.indexOf('/pl/') === 0 || currentPath === '/pl' || currentPath === '/pl/index.html' || currentPath.indexOf('/pl') === 0) {
+            return 'pl';
+        }
+        
+        // Check full URL as fallback (for cases where pathname might not show subdirectory correctly)
+        // Use regex to be more precise
+        const hasEn = /\/en(\/|$|index\.html)/.test(currentUrl);
+        const hasPl = /\/pl(\/|$|index\.html)/.test(currentUrl);
+        
+        if (hasEn && !hasPl) {
+            return 'en';
+        }
+        if (hasPl && !hasEn) {
+            return 'pl';
+        }
+        
+        // Check HTML lang attribute as additional fallback
+        const htmlLang = document.documentElement ? document.documentElement.lang : null;
+        if (htmlLang === 'en') return 'en';
+        if (htmlLang === 'pl') return 'pl';
+        
+        // If on root, default to Polish (but should redirect)
+        if (currentPath === '/' || currentPath === '/index.html') {
+            return 'pl';
+        }
+        
+        // Default to Polish if uncertain
+        return 'pl';
     }
     
-    // Initialize translations
-    if (typeof setLanguage !== 'undefined') {
-        setLanguage(currentLanguage);
+    const currentLang = window.getCurrentLanguage();
+    const isPolish = currentLang === 'pl';
+    const isEnglish = currentLang === 'en';
+    
+    // Only redirect if we're actually on root (not in a subdirectory)
+    // This check should be very specific to avoid breaking subdirectory pages
+    const redirectPath = window.location.pathname;
+    const redirectUrl = window.location.href;
+    
+    // Only redirect if we're on actual root - be very specific
+    // Don't redirect if we're already in /pl/ or /en/ subdirectories
+    const isInSubdirectory = redirectPath.startsWith('/pl/') || 
+                              redirectPath.startsWith('/en/') || 
+                              redirectPath === '/pl' || 
+                              redirectPath === '/en' ||
+                              redirectUrl.includes('/pl/') || 
+                              redirectUrl.includes('/en/') ||
+                              redirectUrl.includes('/pl/index.html') ||
+                              redirectUrl.includes('/en/index.html');
+    
+    // Only redirect if we're on actual root and NOT in a subdirectory
+    if (!isInSubdirectory && (redirectPath === '/' || redirectPath === '/index.html')) {
+        window.location.href = '/pl/';
+        return; // Exit early only if we're actually redirecting
     }
+    
+    const langBtnEn = document.getElementById('lang-btn-en');
+    const langBtnPl = document.getElementById('lang-btn-pl');
+
+    // Update button states based on current language
+    function updateLanguageButtonStates() {
+        const lang = window.getCurrentLanguage();
+        if (langBtnEn && langBtnPl) {
+            if (lang === 'pl') {
+                // Polish is active
+                langBtnPl.classList.add('bg-white', 'dark:bg-surface-dark', 'text-primary', 'dark:text-white', 'shadow-sm', 'font-bold');
+                langBtnPl.classList.remove('text-gray-500', 'dark:text-gray-400', 'font-medium');
+                langBtnEn.classList.remove('bg-white', 'dark:bg-surface-dark', 'text-primary', 'dark:text-white', 'shadow-sm', 'font-bold');
+                langBtnEn.classList.add('text-gray-500', 'dark:text-gray-400', 'font-medium');
+            } else if (lang === 'en') {
+                // English is active
+                langBtnEn.classList.add('bg-white', 'dark:bg-surface-dark', 'text-primary', 'dark:text-white', 'shadow-sm', 'font-bold');
+                langBtnEn.classList.remove('text-gray-500', 'dark:text-gray-400', 'font-medium');
+                langBtnPl.classList.remove('bg-white', 'dark:bg-surface-dark', 'text-primary', 'dark:text-white', 'shadow-sm', 'font-bold');
+                langBtnPl.classList.add('text-gray-500', 'dark:text-gray-400', 'font-medium');
+            }
+        }
+    }
+    
+    // Set initial button states
+    updateLanguageButtonStates();
+    
+    // Language toggle - always navigate to the target language URL
+    // Use event delegation to catch clicks even if buttons are added dynamically
+    document.addEventListener('click', function(e) {
+        // Check if clicked element is a language button or inside one
+        const langBtnEn = e.target.closest('#lang-btn-en');
+        const langBtnPl = e.target.closest('#lang-btn-pl');
+        
+        if (langBtnEn) {
+            e.preventDefault();
+            e.stopPropagation();
+            // Always navigate to English version
+            window.location.href = '/en/';
+            return false;
+        }
+        
+        if (langBtnPl) {
+            e.preventDefault();
+            e.stopPropagation();
+            // Always navigate to Polish version
+            window.location.href = '/pl/';
+            return false;
+        }
+    });
+    
+    // Set initial language based on URL
+    if (isPolish && typeof setLanguage !== 'undefined') {
+        setLanguage('pl');
+    } else if (isEnglish && typeof setLanguage !== 'undefined') {
+        setLanguage('en');
+    }
+    
+    // Initialize translations - language is now set based on URL above
     
     
     // Smooth scroll for anchor links
@@ -121,7 +225,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Render wedding packages
     function renderPackages() {
         const packagesGrid = document.getElementById('packages-grid');
-        if (!packagesGrid) return;
+        if (!packagesGrid) {
+            console.warn('packages-grid element not found');
+            return;
+        }
         
         const packages = [
             { id: 1, isPopular: false },
@@ -130,19 +237,56 @@ document.addEventListener('DOMContentLoaded', function() {
             { id: 4, isPopular: false }
         ];
         
-        const lang = (typeof currentLanguage !== 'undefined' ? currentLanguage : (localStorage.getItem('language') || 'en'));
-        const t = (typeof translations !== 'undefined' && translations[lang]) ? translations[lang] : (translations && translations.en ? translations.en : {});
+        // Use getCurrentLanguage() to determine language from URL, with fallbacks
+        let lang = 'pl'; // default
+        if (typeof window.getCurrentLanguage === 'function') {
+            lang = window.getCurrentLanguage();
+        } else {
+            // Fallback: check HTML lang attribute or URL
+            const htmlLang = document.documentElement ? document.documentElement.lang : null;
+            const path = window.location.pathname;
+            const url = window.location.href;
+            if (htmlLang === 'en' || path.includes('/en') || url.includes('/en/')) {
+                lang = 'en';
+            } else {
+                lang = 'pl';
+            }
+        }
+        
+        // Get translations - wait for it if needed
+        let t = {};
+        if (typeof translations !== 'undefined' && translations[lang]) {
+            t = translations[lang];
+        } else if (typeof translations !== 'undefined' && translations.en) {
+            t = translations.en; // fallback to English
+        } else {
+            // Translations not loaded yet - retry
+            console.warn('Translations not loaded for packages, retrying...');
+            setTimeout(() => {
+                if (typeof renderPackages === 'function') {
+                    renderPackages();
+                }
+            }, 200);
+            return; // Exit early, will retry
+        }
         
         packagesGrid.innerHTML = packages.map(pkg => {
-            const badge = t[`package${pkg.id}Badge`];
-            const title = t[`package${pkg.id}Title`];
-            const subtitle = t[`package${pkg.id}Subtitle`];
-            const price = t[`package${pkg.id}Price`];
-            const button = t[`package${pkg.id}Button`];
+            // Get translation keys with fallbacks
+            const badge = t[`package${pkg.id}Badge`] || '';
+            const title = t[`package${pkg.id}Title`] || '';
+            const subtitle = t[`package${pkg.id}Subtitle`] || '';
+            const price = t[`package${pkg.id}Price`] || '';
+            const button = t[`package${pkg.id}Button`] || '';
             const bullets = [
-                { text: t[`package${pkg.id}Bullet1`], align: 'center' }, // hairstyles - center aligned
-                { text: t[`package${pkg.id}Bullet2`], align: 'start' }  // exclusive availability - top aligned
+                { text: t[`package${pkg.id}Bullet1`] || '', align: 'center' }, // hairstyles - center aligned
+                { text: t[`package${pkg.id}Bullet2`] || '', align: 'start' }  // exclusive availability - top aligned
             ];
+            
+            // Validate that we have the essential data
+            if (!title || !price) {
+                console.warn(`Missing translation data for package ${pkg.id}`);
+                return ''; // Skip this package if essential data is missing
+            }
             
             const cardClass = pkg.isPopular 
                 ? 'bg-primary text-white rounded-3xl p-6 shadow-xl shadow-primary/20 flex flex-col relative z-10'
@@ -181,7 +325,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     <a class="${buttonClass}" href="#contact">${button}</a>
                 </div>
             `;
-        }).join('');
+        }).filter(html => html !== '').join(''); // Filter out empty strings from skipped packages
+        
+        // Debug log to confirm rendering
+        console.log('Packages rendered for language:', lang, 'Count:', packages.length);
+        
+        // Verify that content was actually rendered
+        if (packagesGrid.innerHTML.trim() === '') {
+            console.error('Packages grid is empty after rendering!');
+        }
     }
     
     
@@ -222,10 +374,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderServicesPricing() {
         const pricingContainer = document.getElementById('services-pricing-content');
-        if (!pricingContainer) return;
+        if (!pricingContainer) {
+            console.warn('services-pricing-content element not found');
+            return;
+        }
         
-        const lang = (typeof currentLanguage !== 'undefined' ? currentLanguage : (localStorage.getItem('language') || 'en'));
-        const t = (typeof translations !== 'undefined' && translations[lang]) ? translations[lang] : (translations && translations.en ? translations.en : {});
+        // Use getCurrentLanguage() to determine language from URL, with fallbacks
+        let lang = 'pl'; // default
+        if (typeof window.getCurrentLanguage === 'function') {
+            lang = window.getCurrentLanguage();
+        } else {
+            // Fallback: check HTML lang attribute or URL
+            const htmlLang = document.documentElement ? document.documentElement.lang : null;
+            const path = window.location.pathname;
+            const url = window.location.href;
+            if (htmlLang === 'en' || path.includes('/en') || url.includes('/en/')) {
+                lang = 'en';
+            } else {
+                lang = 'pl';
+            }
+        }
+        
+        // Get translations - wait for it if needed
+        let t = {};
+        if (typeof translations !== 'undefined' && translations[lang]) {
+            t = translations[lang];
+        } else if (typeof translations !== 'undefined' && translations.en) {
+            t = translations.en; // fallback to English
+        } else {
+            // Translations not loaded yet - retry
+            console.warn('Translations not loaded for services pricing, retrying...');
+            setTimeout(() => {
+                if (typeof renderServicesPricing === 'function') {
+                    renderServicesPricing();
+                }
+            }, 200);
+            return; // Exit early, will retry
+        }
         
         const studioRows = [
             { name: t.servicesStudioShort, duration: t.servicesStudioShortDuration, price: t.servicesStudioShortPrice },
@@ -275,31 +460,112 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         pricingContainer.innerHTML = studioCol + bridalCol + addonsCol;
+        
+        // Debug log to confirm rendering
+        console.log('Services pricing rendered for language:', lang);
     }
     
     // Make functions globally available for translation updates
     window.renderPackages = renderPackages;
     window.renderServicesPricing = renderServicesPricing;
     
-    // Render packages and services pricing after a short delay to ensure translations.js is loaded
-    setTimeout(() => {
-        renderPackages();
-        renderServicesPricing();
-    }, 100);
+    // Render packages and services pricing - ensure they always run
+    function initRendering() {
+        // Wait for translations to be available, but don't wait forever
+        if (typeof translations === 'undefined') {
+            setTimeout(initRendering, 50);
+            return;
+        }
+        
+        try {
+            if (typeof renderPackages === 'function') {
+                renderPackages();
+            }
+            if (typeof renderServicesPricing === 'function') {
+                renderServicesPricing();
+            }
+        } catch (error) {
+            console.error('Error rendering packages/services:', error);
+            // Retry once after a longer delay
+            setTimeout(() => {
+                try {
+                    if (typeof renderPackages === 'function') {
+                        renderPackages();
+                    }
+                    if (typeof renderServicesPricing === 'function') {
+                        renderServicesPricing();
+                    }
+                } catch (e) {
+                    console.error('Retry failed:', e);
+                }
+            }, 300);
+        }
+    }
+    
+    // Start rendering - ensure it runs after DOM is ready and translations are loaded
+    function startRendering() {
+        // Wait for both DOM and translations
+        let attempts = 0;
+        const maxAttempts = 100; // Stop after 5 seconds (100 * 50ms)
+        
+        const checkAndRender = function() {
+            attempts++;
+            const domReady = document.readyState === 'complete' || document.readyState === 'interactive';
+            const translationsReady = typeof translations !== 'undefined';
+            
+            if (domReady && translationsReady) {
+                setTimeout(initRendering, 100);
+            } else if (attempts < maxAttempts) {
+                // Keep checking until both are ready
+                setTimeout(checkAndRender, 50);
+            } else {
+                // Timeout - try to render anyway
+                console.warn('Timeout waiting for DOM/translations, attempting to render anyway...');
+                setTimeout(initRendering, 100);
+            }
+        };
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', checkAndRender);
+        } else {
+            checkAndRender();
+        }
+    }
+    
+    startRendering();
+    
+    // Also try to render when window loads (fallback)
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            if (typeof renderPackages === 'function' && typeof translations !== 'undefined') {
+                console.log('Fallback: Attempting to render packages on window load');
+                renderPackages();
+            }
+            if (typeof renderServicesPricing === 'function' && typeof translations !== 'undefined') {
+                console.log('Fallback: Attempting to render services pricing on window load');
+                renderServicesPricing();
+            }
+        }, 500);
+    });
     
     // Portfolio Gallery Modal: main image + preview images (001, 032, 025, 004) + all others 5–44 (skip 25, 32)
-    const portfolioImages = ['img/portfolio/main.jpeg'];
-    portfolioImages.push('img/portfolio/portfolio_001.jpeg', 'img/portfolio/portfolio_032.jpeg', 'img/portfolio/portfolio_025.jpeg', 'img/portfolio/portfolio_004.jpeg');
+    // Determine base path based on current URL
+    const galleryPath = window.location.pathname;
+    const isSubdirectory = galleryPath.startsWith('/pl/') || galleryPath.startsWith('/en/');
+    const basePath = isSubdirectory ? '../img/' : 'img/';
+    
+    const portfolioImages = [`${basePath}main.webp`];
+    portfolioImages.push(`${basePath}portfolio_001.webp`, `${basePath}portfolio_032.webp`, `${basePath}portfolio_025.webp`, `${basePath}portfolio_004.webp`);
     const previewIds = new Set([1, 4, 25, 32]);
     for (let i = 5; i <= 44; i++) {
         if (previewIds.has(i)) continue;
-        portfolioImages.push(`img/portfolio/portfolio_${String(i).padStart(3, '0')}.jpeg`);
+        portfolioImages.push(`${basePath}portfolio_${String(i).padStart(3, '0')}.webp`);
     }
     
     // All portfolio images including main + preview ones for lightbox navigation
-    const allPortfolioImages = ['img/portfolio/main.jpeg'];
+    const allPortfolioImages = [`${basePath}main.webp`];
     for (let i = 1; i <= 44; i++) {
-        allPortfolioImages.push(`img/portfolio/portfolio_${String(i).padStart(3, '0')}.jpeg`);
+        allPortfolioImages.push(`${basePath}portfolio_${String(i).padStart(3, '0')}.webp`);
     }
     
     const galleryModal = document.getElementById('portfolio-gallery-modal');
@@ -478,10 +744,43 @@ document.addEventListener('DOMContentLoaded', function() {
         const reviewsSlider = document.getElementById('reviews-slider');
         const reviewsDots = document.getElementById('reviews-dots');
         
-        if (!reviewsSlider || !reviewsDots) return;
+        if (!reviewsSlider || !reviewsDots) {
+            console.warn('reviews-slider or reviews-dots element not found');
+            return;
+        }
         
-        const lang = (typeof currentLanguage !== 'undefined' ? currentLanguage : (localStorage.getItem('language') || 'en'));
-        const t = (typeof translations !== 'undefined' && translations[lang]) ? translations[lang] : (translations && translations.en ? translations.en : {});
+        // Use getCurrentLanguage() to determine language from URL, with fallbacks
+        let lang = 'pl'; // default
+        if (typeof window.getCurrentLanguage === 'function') {
+            lang = window.getCurrentLanguage();
+        } else {
+            // Fallback: check HTML lang attribute or URL
+            const htmlLang = document.documentElement ? document.documentElement.lang : null;
+            const path = window.location.pathname;
+            const url = window.location.href;
+            if (htmlLang === 'en' || path.includes('/en') || url.includes('/en/')) {
+                lang = 'en';
+            } else {
+                lang = 'pl';
+            }
+        }
+        
+        // Get translations - wait for it if needed
+        let t = {};
+        if (typeof translations !== 'undefined' && translations[lang]) {
+            t = translations[lang];
+        } else if (typeof translations !== 'undefined' && translations.en) {
+            t = translations.en; // fallback to English
+        } else {
+            // Translations not loaded yet - retry
+            console.warn('Translations not loaded for reviews, retrying...');
+            setTimeout(() => {
+                if (typeof renderReviews === 'function') {
+                    renderReviews();
+                }
+            }, 200);
+            return; // Exit early, will retry
+        }
         
         // Get all reviews (review1 through review12)
         const reviews = [];
@@ -682,6 +981,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initialize
         updateSlider(0);
         startAutoSlide();
+        
+        // Debug log to confirm rendering
+        console.log('Reviews rendered for language:', lang, 'Count:', reviews.length);
+        
+        // Verify that content was actually rendered
+        if (reviewsSlider.innerHTML.trim() === '') {
+            console.error('Reviews slider is empty after rendering!');
+        }
     }
     
     // Render reviews on page load and when language changes
@@ -698,13 +1005,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    // Ensure DOM is ready before rendering
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', safeRenderReviews);
-    } else {
-        // DOM already loaded, use requestAnimationFrame to ensure translations are ready
-        requestAnimationFrame(safeRenderReviews);
+    // Ensure DOM is ready and dependencies are loaded before rendering reviews
+    function initReviews() {
+        // Wait for both DOM and translations
+        let attempts = 0;
+        const maxAttempts = 100; // Stop after 5 seconds (100 * 50ms)
+        
+        const checkAndRenderReviews = function() {
+            attempts++;
+            const domReady = document.readyState === 'complete' || document.readyState === 'interactive';
+            const translationsReady = typeof translations !== 'undefined';
+            
+            if (domReady && translationsReady) {
+                setTimeout(safeRenderReviews, 150);
+            } else if (attempts < maxAttempts) {
+                setTimeout(checkAndRenderReviews, 50);
+            } else {
+                // Timeout - try to render anyway
+                console.warn('Timeout waiting for DOM/translations for reviews, attempting to render anyway...');
+                setTimeout(safeRenderReviews, 150);
+            }
+        };
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', checkAndRenderReviews);
+        } else {
+            checkAndRenderReviews();
+        }
     }
+    
+    initReviews();
+    
+    // Also try to render reviews when window loads (fallback)
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            if (typeof renderReviews === 'function' && typeof translations !== 'undefined') {
+                console.log('Fallback: Attempting to render reviews on window load');
+                safeRenderReviews();
+            }
+        }, 500);
+    });
     
     // Make renderReviews available globally for language switching
     window.renderReviews = safeRenderReviews;
