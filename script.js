@@ -573,9 +573,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const viewAllBtn = document.getElementById('view-all-portfolio');
     const closeGalleryBtn = document.getElementById('close-gallery');
     
-    // Populate gallery with images
+    // Populate gallery with images (only once to avoid reloading)
+    let isGalleryPopulated = false;
     function populateGallery() {
-        galleryGrid.innerHTML = '';
+        if (!galleryGrid || isGalleryPopulated) return;
         portfolioImages.forEach((imageSrc, index) => {
             const imgContainer = document.createElement('div');
             imgContainer.className = 'group relative overflow-hidden rounded-2xl cursor-pointer aspect-square gallery-image';
@@ -595,6 +596,7 @@ document.addEventListener('DOMContentLoaded', function() {
             imgContainer.appendChild(img);
             galleryGrid.appendChild(imgContainer);
         });
+        isGalleryPopulated = true;
     }
     
     // Open gallery
@@ -806,10 +808,13 @@ document.addEventListener('DOMContentLoaded', function() {
         `).join('');
         
         // Initialize slider functionality AFTER DOM insertion
-        // Use requestAnimationFrame to ensure DOM is fully updated
-        requestAnimationFrame(() => {
+        // Use setTimeout to ensure DOM is fully updated and elements are accessible
+        setTimeout(() => {
             initReviewsSlider(reviews.length);
-        });
+        }, 100);
+        
+        // Debug log for renderReviews completion
+        console.log('Reviews rendered for language:', lang, 'Count:', reviews.length);
     }
     
     // Store slider state globally to prevent multiple initializations
@@ -840,7 +845,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const reviewsNext = document.getElementById('reviews-next');
         const reviewsDots = document.getElementById('reviews-dots');
         
-        if (!reviewsSlider || !reviewsDots) return;
+        if (!reviewsSlider || !reviewsDots) {
+            console.warn('Reviews slider elements not found, retrying...');
+            setTimeout(() => initReviewsSlider(totalReviews), 200);
+            return;
+        }
+        
+        // Log for debugging
+        console.log('Initializing reviews slider:', {
+            slider: !!reviewsSlider,
+            prev: !!reviewsPrev,
+            next: !!reviewsNext,
+            dots: !!reviewsDots,
+            totalReviews: totalReviews
+        });
         
         // Use data attribute for reliable selection
         const reviewSlides = reviewsSlider.querySelectorAll('[data-review-slide="true"]');
@@ -901,7 +919,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function startAutoSlide() {
             stopAutoSlide();
-            reviewsSliderState.interval = setInterval(nextSlide, 3000);
+            if (reviewSlides.length > 0) {
+                reviewsSliderState.interval = setInterval(() => {
+                    nextSlide();
+                }, 3000); // 3 seconds autoscroll interval
+            }
         }
 
         function stopAutoSlide() {
@@ -982,13 +1004,13 @@ document.addEventListener('DOMContentLoaded', function() {
         updateSlider(0);
         startAutoSlide();
         
-        // Debug log to confirm rendering
-        console.log('Reviews rendered for language:', lang, 'Count:', reviews.length);
-        
-        // Verify that content was actually rendered
-        if (reviewsSlider.innerHTML.trim() === '') {
-            console.error('Reviews slider is empty after rendering!');
-        }
+        // Debug log to confirm initialization
+        console.log('Reviews slider initialized:', {
+            currentSlide: reviewsSliderState.currentSlide,
+            totalSlides: reviewSlides.length,
+            autoscrollActive: !!reviewsSliderState.interval,
+            arrowsFound: { prev: !!reviewsPrev, next: !!reviewsNext }
+        });
     }
     
     // Render reviews on page load and when language changes

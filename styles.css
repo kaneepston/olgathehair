@@ -40,6 +40,37 @@ img {
     height: auto;
 }
 
+/* Brand logos alignment */
+.brand-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+}
+
+.brand-logos img,
+.brand-logos svg {
+    height: 64px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    display: block;
+    filter: grayscale(1);
+}
+
+.dark .brand-logos img,
+.dark .brand-logos svg {
+    filter: grayscale(1) invert(1);
+}
+
+@media (max-width: 640px) {
+    .brand-logos img,
+    .brand-logos svg {
+        height: 40px;
+        max-width: 120px;
+    }
+}
+
 /* Hide scrollbar for reviews slider */
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
