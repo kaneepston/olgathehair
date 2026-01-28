@@ -10,21 +10,21 @@ const translations = {
         navBookAppointment: "Book Appointment",
         
         // Header
-        headerLocation: "KRAKOW · STUDIO & ON-LOCATION",
-        headerTitle: "Wedding & Event Hair Styling",
-        headerSubtitle: "in Krakow",
-        headerDescription: "Professional hair styling available in studio and on location across Krakow and surrounding areas. Wedding, event, and special occasion hairstyles—long-lasting, refined, and photogenic.",
+        headerLocation: "",
+        headerTitle: "Weddings & Events",
+        headerSubtitle: "Hairstyles",
+        headerDescription: "Want a perfect, long-lasting hairstyle tailored to your needs? You're in the right place. I provide professional hair styling in my studio or on location at any place you choose. Your beauty is my passion! I'll create the hairstyle you dream of, so you feel special and comfortable on any occasion.",
         headerBookButton: "Book Appointment",
         headerViewPortfolio: "View Portfolio",
-        headerBridesStyled: "Brides Styled",
-        headerStudioLocationTitle: "Central",
-        headerStudioLocation: "Studio Location",
-        headerOnLocationTitle: "Mobile",
-        headerOnLocation: "On-location",
+        headerBridesStyled: "Brides",
+        headerStudioLocationTitle: "In-studio",
+        headerStudioLocation: "professional studio",
+        headerOnLocationTitle: "On location",
+        headerOnLocation: "travel to your chosen address",
         
         // Portfolio
-        portfolioTitle: "Portfolio",
-        portfolioSubtitle: "A curated selection of recent work.",
+        portfolioTitle: "My Portfolio.",
+        portfolioSubtitle: "Selected styles",
         portfolioViewAll: "View full portfolio",
         portfolioLabelBohemian: "Bohemian",
         portfolioLabelChic: "Chic",
@@ -37,7 +37,7 @@ const translations = {
         
         // Services
         servicesTitle: "Services & Pricing",
-        servicesDescription: "Experience the luxury of personalized styling at our central Kraków studio.",
+        servicesDescription: "Experience the luxury of personalized styling in my studio in Krakow.",
         servicesBookLink: "Book Appointment",
         servicesStudioHeading: "Studio Styling",
         servicesStudioNote: "Evening Hairstyle · Voluminous Curls · Hollywood Waves",
@@ -78,7 +78,7 @@ const translations = {
         packagesLabel: "On-Location",
         packagesTitle: "Wedding Packages",
         packagesDescription: "Each package includes travel within Kraków, unlimited email consultations, an additional hour of availability on the wedding day, and the option of a wedding contract.*",
-        packagesDisclaimer: "* Travel outside Kraków is priced individually, and trial hairstyles are not included. If fewer people use the service than the package covers, the package price remains unchanged. A deposit is required to secure the booking.",
+        packagesDisclaimer: "* Travel outside Krakow is priced individually. Trial hairstyles are not included in the price. If the package is used by fewer people than specified, the package price remains unchanged. A deposit is required to secure the booking.",
         packagesCaptureTitle: "Capture perfection",
         packagesCaptureDesc: "Hairstyles designed to look flawless from every angle.",
         package1Badge: "STANDARD",
@@ -171,7 +171,7 @@ const translations = {
         
         // About
         aboutTitle: "About Me",
-        aboutText1: "I'm Olga, a professional hair stylist specializing in elegant, long-lasting hairstyles created with a fully individual approach. I believe every woman is unique, and each hairstyle should reflect her personality, features, and the occasion. For me, styling is not just about technique — it's a thoughtful process where precision, aesthetics, and comfort come together to create a refined, effortless result.",
+        aboutText1: "My name is Olga and I am a professional hairstylist. I specialize in creating elegant, long-lasting styles for every occasion. I always work with an individual approach, taking each person's needs into account. I believe every woman is unique, which is why a hairstyle should highlight her personality, beauty, and the character of the occasion. For me, styling is not only the right technique, but also a thoughtful process that combines precision and aesthetics, as well as your personal comfort.",
         
         // Brands
         brandsTitle: "Brands I Am Working With",
@@ -179,7 +179,7 @@ const translations = {
         // Training
         trainingLabel: "",
         trainingTitle: "Training",
-        trainingDescription: "Olga offers on-demand professional training for hair stylists and salon teams, delivered as in-person, hands-on sessions. The training focuses on strong technical foundations, work aesthetics, trend awareness, and a professional approach to styling. Sessions are tailored to the team's level and cover updo techniques, client workflow, and building a clear, confident service offering.",
+        trainingDescription: "I run professional training for hairstylists and salon teams, delivered as practical in-person sessions. The training focuses on strong technical foundations, work aesthetics, trend awareness, and a professional approach to the craft. The program is tailored to the participants' level and covers updo techniques, client work, and building a consistent, professional offer.",
         trainingCaption: "",
         trainingButton: "Request Training",
         
@@ -225,21 +225,21 @@ const translations = {
         navBookAppointment: "Umów wizytę",
         
         // Header
-        headerLocation: "KRAKÓW · STUDIO I Z DOJAZDEM",
-        headerTitle: "Fryzury ślubne i okolicznościowe",
-        headerSubtitle: "w Krakowie",
-        headerDescription: "Profesjonalna stylizacja włosów w studio i z dojazdem na terenie Krakowa i okolic. Fryzury ślubne, eventowe i okolicznościowe — trwałe, dopracowane i fotogeniczne.",
+        headerLocation: "",
+        headerTitle: "Fryzury ślubne i",
+        headerSubtitle: "okolicznościowe",
+        headerDescription: "Chcesz mieć idealną, trwałą i dostosowaną do swoich potrzeb fryzurę? Trafiłaś w dobre miejsce. Wykonuję profesjonalną stylizację włosów stacjonarnie w moim Studio lub z dojazdem w dowolne, wskazane przez Ciebie miejsce. Twoje piękno to moja pasja! Stworzę dla Ciebie fryzurę o jakiej marzysz, abyś w każdych okolicznościach czuła się wyjątkowo i komfortowo.",
         headerBookButton: "Umów wizytę",
         headerViewPortfolio: "Zobacz Portfolio",
-        headerBridesStyled: "Panie Młode",
-        headerStudioLocationTitle: "Centralne",
-        headerStudioLocation: "Lokalizacja Studio",
-        headerOnLocationTitle: "Mobilne",
-        headerOnLocation: "Dojazd",
+        headerBridesStyled: "Panny Młode",
+        headerStudioLocationTitle: "Stacjonarnie",
+        headerStudioLocation: "profesjonalne studio",
+        headerOnLocationTitle: "Mobilnie",
+        headerOnLocation: "z dojazdem do wskazanej lokalizacji",
         
         // Portfolio
-        portfolioTitle: "Portfolio",
-        portfolioSubtitle: "Wybór najnowszych prac.",
+        portfolioTitle: "Moje Portfolio",
+        portfolioSubtitle: "Wybrane stylizacje",
         portfolioViewAll: "Zobacz całe portfolio",
         portfolioLabelBohemian: "Bohemian",
         portfolioLabelChic: "Chic",
@@ -252,7 +252,7 @@ const translations = {
         
         // Services
         servicesTitle: "Usługi i Cennik",
-        servicesDescription: "Doświadcz luksusu spersonalizowanej stylizacji w naszym centralnym studio w Krakowie.",
+        servicesDescription: "Doświadcz luksusu spersonalizowanej stylizacji w moim studio w Krakowie.",
         servicesBookLink: "Umów wizytę",
         servicesStudioHeading: "Stylizacja w studio",
         servicesStudioNote: "Fryzura wieczorowa · Loki objętościowe · Fale Hollywood",
@@ -293,7 +293,7 @@ const translations = {
         packagesLabel: "Dojazd",
         packagesTitle: "Pakiety Ślubne",
         packagesDescription: "Każdy pakiet zawiera dojazd na terenie Krakowa, nielimitowane konsultacje mailowe, dodatkową godzinę dostępności w dniu ślubu oraz opcję umowy ślubnej.*",
-        packagesDisclaimer: "* Dojazd poza Krakowem wyceniany indywidualnie, a fryzury próbne nie są wliczone. Jeśli mniej osób korzysta z usługi niż obejmuje pakiet, cena pakietu pozostaje niezmieniona. Wymagany jest zadatek, aby zabezpieczyć rezerwację.",
+        packagesDisclaimer: "* Dojazd poza Kraków wyceniany indywidualnie - fryzury próbne nie są wliczone w cenę. W przypadku korzystania z pakietu przez mniejszą ilości osób niż wskazanych w danym pakiecie - cena pakietu pozostaje niezmieniona. Wymagany jest zadatek, aby zabezpieczyć rezerwację.",
         packagesCaptureTitle: "Uchwyć perfekcję",
         packagesCaptureDesc: "Fryzury zaprojektowane, aby wyglądać nieskazitelnie z każdego kąta.",
         package1Badge: "STANDARD",
@@ -386,7 +386,7 @@ const translations = {
         
         // About
         aboutTitle: "O Mnie",
-        aboutText1: "Nazywam się Olga i jestem profesjonalną stylistką fryzur, specjalizującą się w eleganckich, trwałych stylizacjach tworzonych z indywidualnym podejściem do każdej osoby. Wierzę, że każda kobieta jest wyjątkowa, dlatego fryzura powinna podkreślać jej osobowość, urodę i charakter okazji. Stylizacja to dla mnie nie tylko technika, ale przemyślany proces łączący precyzję, estetykę i komfort.",
+        aboutText1: "Mam na imię Olga i jestem profesjonalną stylistką fryzur. Specjalizuję się w tworzeniu eleganckich i trwałych stylizacji na każdą okazję. Swoją pracę wykonuję zawsze z indywidualnym podejściem do każdej osoby i z uwzględnieniem jej potrzeb. Wierzę, że każda kobieta jest wyjątkowa, dlatego fryzura powinna podkreślać jej osobowość, urodę i charakter okazji. Stylizacja to dla mnie nie tylko właściwa technika, ale także przemyślany proces łączący precyzję i estetykę, ale także Twój osobisty komfort.",
         
         // Brands
         brandsTitle: "Marki, z Którymi Współpracuję",
@@ -394,7 +394,7 @@ const translations = {
         // Training
         trainingLabel: "",
         trainingTitle: "Szkolenia",
-        trainingDescription: "Olga prowadzi profesjonalne szkolenia na zamówienie dla stylistów fryzur oraz zespołów salonowych, realizowane w formie praktycznych zajęć stacjonarnych. Szkolenia koncentrują się na solidnych podstawach technicznych, estetyce pracy, świadomości trendów oraz profesjonalnym podejściu do zawodu. Program jest dopasowany do poziomu zespołu i obejmuje techniki upięć, pracę z klientką oraz budowanie spójnej i pewnej oferty usług.",
+        trainingDescription: "Prowadzę profesjonalne szkolenia dla stylistów fryzur oraz zespołów salonowych, realizowane w formie praktycznych zajęć stacjonarnych. Szkolenia koncentrują się na solidnych podstawach technicznych, estetyce pracy, świadomości trendów oraz profesjonalnym podejściu do zawodu. Program jest dopasowany do poziomu kursantów i obejmuje techniki upięć, pracę z klientką oraz budowanie spójnej i profesjonalnej oferty.",
         trainingCaption: "",
         trainingButton: "Zapytaj o szkolenie",
         

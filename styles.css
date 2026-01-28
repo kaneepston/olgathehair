@@ -363,12 +363,11 @@ img {
 .benefit-label {
     margin-top: 0.25rem;
     line-height: 1.4;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 @media (max-width: 640px) {
     .benefit-label {
-        white-space: normal;
         font-size: 0.65rem;
     }
 }
