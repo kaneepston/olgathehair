@@ -3,13 +3,26 @@
 <head>
     <!-- Cookie Consent - MUST load before GTM -->
     <script src="../consent.js?v=1.0.0"></script>
-    <!-- Google Tag Manager -->
+    <!-- Google Tag Manager - Deferred until after DOMContentLoaded and consent -->
     <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TWRZ58QR');
+    // Delay GTM loading until after DOMContentLoaded and consent check
+    (function() {
+        function loadGTM() {
+            // Check if consent is required and granted, or if consent module doesn't exist
+            if (typeof window.CookieConsent === 'undefined' || window.CookieConsent.hasConsentDecision()) {
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-TWRZ58QR');
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadGTM);
+        } else {
+            loadGTM();
+        }
+    })();
     </script>
     <!-- End Google Tag Manager -->
     <meta charset="utf-8"/>
@@ -28,13 +41,12 @@
     <link rel="icon" type="image/x-icon" href="../favicon/favicon.ico">
     <link rel="manifest" href="../favicon/site.webmanifest">
     <meta name="theme-color" content="#A88F7F">
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="../styles-tailwind.css">
     <!-- Preload critical images - only hero image gets fetchpriority -->
     <link rel="preload" as="image" href="../img/main.webp" fetchpriority="high">
-    <link rel="preload" as="image" href="../img/portfolio_001.webp">
-    <link rel="preload" as="image" href="../img/portfolio_032.webp">
-    <link rel="preload" as="image" href="../img/portfolio_025.webp">
-    <link rel="preload" as="image" href="../img/portfolio_004.webp">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="../styles.css?v=1.0.0">
@@ -296,6 +308,7 @@
         </div>
     </header>
 
+    <main id="main">
     <!-- Portfolio Section -->
     <section class="py-20 bg-surface-light dark:bg-surface-dark transition-colors duration-300" id="portfolio">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -307,28 +320,28 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
                 <div class="group relative overflow-hidden rounded-2xl row-span-2 cursor-pointer portfolio-image" data-image="../img/portfolio_001.webp">
-                    <img alt="Fryzura ślubna - klasyczne fale hollywoodzkie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top; aspect-ratio: 2/3;" src="../img/portfolio_001.webp" srcset="../img/portfolio_001.webp 800w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="eager" decoding="async" width="800" height="1200"/>
+                    <img alt="Fryzura ślubna - klasyczne fale hollywoodzkie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top; aspect-ratio: 2/3;" src="../img/portfolio_001.webp" srcset="../img/portfolio_001.webp 800w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="lazy" decoding="async" width="800" height="1200"/>
                     <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/70 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wide text-gray-900 dark:text-white uppercase" data-i18n="portfolioLabelBohemian">Bohemian</div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                         <h3 class="text-white font-display text-xl" data-i18n="portfolioHover1">Klasyczne fale hollywoodzkie</h3>
                     </div>
                 </div>
                 <div class="group relative overflow-hidden rounded-2xl cursor-pointer portfolio-image" data-image="../img/portfolio_032.webp">
-                    <img alt="Fryzura ślubna - nowoczesny styl" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top; aspect-ratio: 4/3;" src="../img/portfolio_032.webp" srcset="../img/portfolio_032.webp 800w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="eager" decoding="async" width="800" height="600"/>
+                    <img alt="Fryzura ślubna - nowoczesny styl" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top; aspect-ratio: 4/3;" src="../img/portfolio_032.webp" srcset="../img/portfolio_032.webp 800w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="lazy" decoding="async" width="800" height="600"/>
                     <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/70 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wide text-gray-900 dark:text-white uppercase" data-i18n="portfolioLabelChic">Chic</div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                         <h3 class="text-white font-display text-xl" data-i18n="portfolioHover2">Nowoczesna stylizacja</h3>
                     </div>
                 </div>
                 <div class="group relative overflow-hidden rounded-2xl row-span-2 cursor-pointer portfolio-image" data-image="../img/portfolio_025.webp">
-                    <img alt="Fryzura ślubna - romantyczne niskie upięcie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top; aspect-ratio: 2/3;" src="../img/portfolio_025.webp" srcset="../img/portfolio_025.webp 800w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="eager" decoding="async" width="800" height="1200"/>
+                    <img alt="Fryzura ślubna - romantyczne niskie upięcie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top; aspect-ratio: 2/3;" src="../img/portfolio_025.webp" srcset="../img/portfolio_025.webp 800w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="lazy" decoding="async" width="800" height="1200"/>
                     <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/70 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wide text-gray-900 dark:text-white uppercase" data-i18n="portfolioLabelBridal">Ślubna</div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                         <h3 class="text-white font-display text-xl" data-i18n="portfolioHover3">Romantyczne niskie upięcie</h3>
                     </div>
                 </div>
                 <div class="group relative overflow-hidden rounded-2xl cursor-pointer portfolio-image" data-image="../img/portfolio_004.webp">
-                    <img alt="Fryzura ślubna - loki w stylu red carpet" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top; aspect-ratio: 4/3;" src="../img/portfolio_004.webp" srcset="../img/portfolio_004.webp 800w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="eager" decoding="async" width="800" height="600"/>
+                    <img alt="Fryzura ślubna - loki w stylu red carpet" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" style="object-position: center top; aspect-ratio: 4/3;" src="../img/portfolio_004.webp" srcset="../img/portfolio_004.webp 800w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="lazy" decoding="async" width="800" height="600"/>
                     <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/70 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wide text-gray-900 dark:text-white uppercase" data-i18n="portfolioLabelGlam">Glam</div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                         <h3 class="text-white font-display text-xl" data-i18n="portfolioHover4">Loki w stylu red carpet</h3>
@@ -421,8 +434,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="relative">
-                    <div class="relative rounded-3xl overflow-hidden shadow-2xl aspect-video lg:aspect-square">
-                        <img alt="Olga - stylistka fryzur ślubnych w Krakowie" class="w-full h-full object-cover" src="../img/Master Photo.webp" loading="lazy" decoding="async" width="800" height="800"/>
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] lg:aspect-square">
+                        <img alt="Olga - stylistka fryzur ślubnych w Krakowie" class="w-full h-full object-cover object-top lg:object-center" src="../img/Master Photo.webp" loading="lazy" decoding="async" width="800" height="800"/>
                     </div>
                 </div>
                 <div>
@@ -451,8 +464,8 @@
     <section class="py-20 bg-surface-light dark:bg-surface-dark" id="training">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="relative rounded-3xl overflow-hidden min-h-[600px] flex items-center justify-center text-center shadow-2xl" style="position: relative; overflow: hidden;">
-                <video id="training-background-video" class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline preload="auto" webkit-playsinline controls="false" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback" style="pointer-events: none; -webkit-appearance: none;">
-                    <source src="../video/academy-training.mp4" type="video/mp4">
+                <video id="training-background-video" class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline preload="none" webkit-playsinline controls="false" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback" style="pointer-events: none; -webkit-appearance: none;">
+                    <source data-src="../video/academy-training.mp4" type="video/mp4">
                 </video>
                 <div class="absolute inset-0 bg-black/50 z-10" style="pointer-events: none;"></div>
                 <div class="relative z-20 max-w-2xl px-6 mx-auto">
@@ -506,7 +519,8 @@
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.050736868884!2d19.9392283157176!3d50.06647097942426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b0e00465371%3A0x6b47ce280b22231!2sD%C5%82uga%207%2C%2031-146%20Krak%C3%B3w%2C%20Poland!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 
                             style="border:0;" 
                             width="100%"
-                            class="w-full h-full">
+                            class="w-full h-full"
+                            title="Mapa pokazująca lokalizację studia w Krakowie">
                         </iframe>
                     </div>
                 </div>
@@ -526,6 +540,7 @@
             </div>
         </div>
     </footer>
+    </main>
 
     <!-- Portfolio Gallery Modal -->
     <div id="portfolio-gallery-modal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-sm">
@@ -582,5 +597,51 @@
 
     <script src="../script.js?v=1.0.0"></script>
     <script src="../cookie-banner.js?v=1.0.0"></script>
+    <!-- Lazy load video when near viewport (especially on mobile) -->
+    <script>
+    (function() {
+        const video = document.getElementById('training-background-video');
+        if (!video) return;
+        
+        const source = video.querySelector('source');
+        if (!source) return;
+        
+        const videoSrc = source.getAttribute('data-src');
+        if (!videoSrc) return;
+        
+        // Only lazy load on mobile (screen width < 1024px)
+        const isMobile = window.innerWidth < 1024;
+        
+        function loadVideo() {
+            if (source.getAttribute('data-src')) {
+                source.src = videoSrc;
+                video.load();
+            }
+        }
+        
+        if (isMobile && 'IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        // Load video when section is near viewport
+                        loadVideo();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '200px' // Start loading 200px before entering viewport
+            });
+            
+            observer.observe(video.parentElement); // Observe the section container
+        } else if (!isMobile) {
+            // On desktop, load video when DOM is ready (preload="none" still prevents early loading)
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', loadVideo);
+            } else {
+                loadVideo();
+            }
+        }
+    })();
+    </script>
 </body>
 </html>

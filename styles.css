@@ -334,6 +334,14 @@ img {
     align-items: center;
     justify-content: center;
     gap: 48px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .brand-logos {
+        flex-direction: column;
+        gap: 32px;
+    }
 }
 
 .brand-logos img,
