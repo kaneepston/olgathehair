@@ -344,6 +344,35 @@ img {
     }
 }
 
+/* Benefit blocks - normalize spacing between EN/PL */
+.benefit-block {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.benefit-block p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.benefit-block .font-display {
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+}
+
+.benefit-label {
+    margin-top: 0.25rem;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+    .benefit-label {
+        white-space: normal;
+        font-size: 0.65rem;
+    }
+}
+
 .brand-logos img,
 .brand-logos svg {
     height: 64px;
