@@ -69,9 +69,10 @@
     @media(min-width:768px){
         [class*="md:hidden"]{display:none!important}
         [class*="md:flex"]{display:flex!important}
-        /* Ensure mobile menu button is hidden on desktop */
+        /* Ensure mobile menu button and language selector are hidden on desktop */
         #mobile-menu-btn{display:none!important}
         #mobile-menu{display:none!important}
+        nav > div > div[class*="md:hidden"]{display:none!important}
         /* Ensure desktop menu is shown */
         nav > div > div[class*="hidden md:flex"]{display:flex!important}
     }
