@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="pl">
 <head>
-    <!-- Cookie Consent - MUST load before GTM -->
+    <!-- Cookie Consent - MUST load before GTM (small, keep synchronous) -->
     <script src="../consent.js?v=1.0.0"></script>
     <!-- Google Tag Manager - Deferred until after DOMContentLoaded and consent -->
     <script>
@@ -62,13 +62,43 @@
     <!-- Preconnect to Google Fonts for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="../styles-tailwind.css">
+    <!-- Critical CSS for above-the-fold (nav/header/hero) -->
+    <style>
+    /* Critical CSS - Nav & Header */
+    nav{position:fixed;width:100%;z-index:50;background:rgba(249,246,242,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(229,231,235,.5);transition:background .3s}
+    nav .max-w-7xl{margin:0 auto;padding:0 1rem}
+    nav .flex{display:flex;justify-content:space-between;align-items:center;height:6rem}
+    nav a{color:#374151;text-decoration:none;font-size:.875rem;font-weight:500;text-transform:uppercase;letter-spacing:.05em;transition:color .3s}
+    nav a:hover{color:#A88F7F}
+    header{position:relative;padding-top:6rem;padding-bottom:3rem;overflow:hidden}
+    header .max-w-7xl{margin:0 auto;padding:3rem 1rem}
+    @media(min-width:768px){header .max-w-7xl{padding:5rem 1.5rem}}
+    @media(min-width:1024px){header .max-w-7xl{padding:5rem 2rem}}
+    h1{font-family:'Playfair Display',serif;font-size:3rem;font-weight:400;line-height:1.1;color:#111827;margin-bottom:1.5rem}
+    @media(min-width:768px){h1{font-size:3.75rem}}
+    @media(min-width:1024px){h1{font-size:4.5rem}}
+    .text-primary{color:#A88F7F}
+    .bg-primary{background-color:#A88F7F}
+    .bg-white{background-color:#fff}
+    .text-white{color:#fff}
+    .rounded-full{border-radius:9999px}
+    .px-8{padding-left:2rem;padding-right:2rem}
+    .py-3\.5{padding-top:.875rem;padding-bottom:.875rem}
+    .font-medium{font-weight:500}
+    .transition-colors{transition:color .3s,background-color .3s}
+    </style>
     <!-- Preload critical images - only hero image gets fetchpriority -->
     <link rel="preload" as="image" href="../img/main.webp" fetchpriority="high">
+    <!-- Load fonts with font-display: swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="../styles.css?v=1.0.0">
-    <script src="../translations.js?v=1.0.0"></script>
+    <!-- Load CSS non-blocking -->
+    <link rel="preload" as="style" href="../styles-tailwind.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../styles-tailwind.css"></noscript>
+    <link rel="preload" as="style" href="../styles.css?v=1.0.0" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../styles.css?v=1.0.0"></noscript>
+    <!-- Translations - defer -->
+    <script src="../translations.js?v=1.0.0" defer></script>
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
@@ -613,8 +643,9 @@
         </div>
     </div>
 
-    <script src="../script.js?v=1.0.0"></script>
-    <script src="../cookie-banner.js?v=1.0.0"></script>
+    <!-- Non-critical scripts - load with defer -->
+    <script src="../script.js?v=1.0.0" defer></script>
+    <script src="../cookie-banner.js?v=1.0.0" defer></script>
     <!-- Lazy load video when near viewport (especially on mobile) -->
     <script>
     (function() {
