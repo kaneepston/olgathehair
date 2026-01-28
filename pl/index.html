@@ -62,62 +62,15 @@
     <!-- Preconnect to Google Fonts for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Critical CSS for above-the-fold (nav/header/hero) -->
+    <!-- Critical CSS for above-the-fold (nav/header/hero) - minimal to avoid breaking layout -->
     <style>
-    /* Critical CSS - Display utilities (must be first) */
-    .hidden{display:none!important}
+    /* Critical CSS - Display utilities only */
+    .hidden{display:none}
     @media(min-width:768px){
-        [class*="md:hidden"]{display:none!important}
-        [class*="md:flex"]{display:flex!important}
-        /* Ensure mobile menu button and language selector are hidden on desktop */
-        #mobile-menu-btn{display:none!important}
-        #mobile-menu{display:none!important}
-        nav > div > div[class*="md:hidden"]{display:none!important}
-        /* Ensure desktop menu is shown */
-        nav > div > div[class*="hidden md:flex"]{display:flex!important}
+        [class*="md:hidden"]{display:none}
+        [class*="md:flex"]{display:flex}
+        #mobile-menu-btn,#mobile-menu{display:none}
     }
-    @media(max-width:767px){
-        /* Hide desktop menu on mobile */
-        nav > div > div[class*="hidden md:flex"]{display:none!important}
-    }
-    /* Critical CSS - Nav & Header */
-    nav{position:fixed;width:100%;z-index:50;background:rgba(249,246,242,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(229,231,235,.5);transition:background .3s}
-    nav .max-w-7xl{margin:0 auto;padding:0 1rem}
-    nav .flex{display:flex;justify-content:space-between;align-items:center;height:6rem}
-    nav a{color:#374151;text-decoration:none;font-size:.875rem;font-weight:500;text-transform:uppercase;letter-spacing:.05em;transition:color .3s}
-    nav a:hover{color:#A88F7F}
-    header{position:relative;padding-top:6rem;padding-bottom:3rem;overflow:hidden}
-    header .max-w-7xl{margin:0 auto;padding:3rem 1rem}
-    @media(min-width:768px){header .max-w-7xl{padding:5rem 1.5rem}}
-    @media(min-width:1024px){header .max-w-7xl{padding:5rem 2rem}}
-    h1{font-family:'Playfair Display',serif;font-size:3rem;font-weight:400;line-height:1.1;color:#111827;margin-bottom:1.5rem}
-    @media(min-width:768px){h1{font-size:3.75rem}}
-    @media(min-width:1024px){h1{font-size:4.5rem}}
-    .text-primary{color:#A88F7F}
-    .bg-primary{background-color:#A88F7F}
-    .bg-white{background-color:#fff}
-    .text-white{color:#fff}
-    .rounded-full{border-radius:9999px}
-    .px-8{padding-left:2rem;padding-right:2rem}
-    .py-3\.5{padding-top:.875rem;padding-bottom:.875rem}
-    .font-medium{font-weight:500}
-    .transition-colors{transition:color .3s,background-color .3s}
-    /* Language selector styling */
-    .bg-gray-100{background-color:#f3f4f6}
-    .rounded-full{border-radius:9999px}
-    .p-1{padding:.25rem}
-    .flex{display:flex}
-    .items-center{align-items:center}
-    .ml-4{margin-left:1rem}
-    button{background:none;border:none;cursor:pointer}
-    .px-4{padding-left:1rem;padding-right:1rem}
-    .py-1\.5{padding-top:.375rem;padding-bottom:.375rem}
-    .text-xs{font-size:.75rem;line-height:1rem}
-    .text-gray-500{color:#6b7280}
-    .bg-white{background-color:#fff}
-    .text-primary{color:#A88F7F}
-    .shadow-sm{box-shadow:0 1px 2px 0 rgba(0,0,0,.05)}
-    .font-bold{font-weight:700}
     </style>
     <!-- Preload critical images - only hero image gets fetchpriority -->
     <link rel="preload" as="image" href="../img/main.webp" fetchpriority="high">
