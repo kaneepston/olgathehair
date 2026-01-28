@@ -77,11 +77,9 @@
     <!-- Load fonts with font-display: swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <!-- Load CSS non-blocking -->
-    <link rel="preload" as="style" href="../styles-tailwind.css" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="../styles-tailwind.css"></noscript>
-    <link rel="preload" as="style" href="../styles.css?v=1.0.0" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="../styles.css?v=1.0.0"></noscript>
+    <!-- Load CSS synchronously to prevent FOUC -->
+    <link rel="stylesheet" href="../styles-tailwind.css">
+    <link rel="stylesheet" href="../styles.css?v=1.0.0">
     <!-- Translations - defer -->
     <script src="../translations.js?v=1.0.0" defer></script>
 </head>
