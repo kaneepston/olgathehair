@@ -69,6 +69,15 @@
     @media(min-width:768px){
         [class*="md:hidden"]{display:none!important}
         [class*="md:flex"]{display:flex!important}
+        /* Ensure mobile menu button is hidden on desktop */
+        #mobile-menu-btn{display:none!important}
+        #mobile-menu{display:none!important}
+        /* Ensure desktop menu is shown */
+        nav > div > div[class*="hidden md:flex"]{display:flex!important}
+    }
+    @media(max-width:767px){
+        /* Hide desktop menu on mobile */
+        nav > div > div[class*="hidden md:flex"]{display:none!important}
     }
     /* Critical CSS - Nav & Header */
     nav{position:fixed;width:100%;z-index:50;background:rgba(249,246,242,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(229,231,235,.5);transition:background .3s}
