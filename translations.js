@@ -143,6 +143,7 @@ const translations = {
         
         // Reviews
         reviewsTitle: "Kind Words",
+        reviewsGoogleTitle: "Google Reviews",
         review1Text: "I recommend Olga — she's kind and very professional. She pays attention to every detail. Great atmosphere and a lovely experience.",
         review1Author: "Angelika P.",
         review2Text: "Total professionalism. Olga is wonderful and friendly—very creative, listens, understands, and advises. The hairstyle exceeded my expectations and lasted all night without any touch-ups. I wholeheartedly recommend her.",
@@ -358,6 +359,7 @@ const translations = {
         
         // Reviews
         reviewsTitle: "Opinie",
+        reviewsGoogleTitle: "Opinie Google",
         review1Text: "Polecam Olgę — jest miła i bardzo profesjonalna. Dba o każdy detal na głowie. Świetna atmosfera i miło spędzony czas.",
         review1Author: "Angelika P.",
         review2Text: "Pełny profesjonalizm. Olga to cudowna, sympatyczna osoba — bardzo kreatywna, słucha potrzeb klienta i je rozumie, podpowie i doradzi. Miałam przyjemność współpracować z Olgą — fryzura przeszła moje najśmielsze oczekiwania i przetrwała całą noc bez poprawek. Polecam z całego serca.",
