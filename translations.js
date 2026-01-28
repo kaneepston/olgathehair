@@ -175,7 +175,7 @@ const translations = {
         aboutText1: "My name is Olga and I am a professional hairstylist. I specialize in creating elegant, long-lasting styles for every occasion. I always work with an individual approach, taking each person's needs into account. I believe every woman is unique, which is why a hairstyle should highlight her personality, beauty, and the character of the occasion. For me, styling is not only the right technique, but also a thoughtful process that combines precision and aesthetics, as well as your personal comfort.",
         
         // Brands
-        brandsTitle: "Brands I Am Working With",
+        brandsTitle: "In my work I use these products",
         
         // Training
         trainingLabel: "",
@@ -391,7 +391,7 @@ const translations = {
         aboutText1: "Mam na imię Olga i jestem profesjonalną stylistką fryzur. Specjalizuję się w tworzeniu eleganckich i trwałych stylizacji na każdą okazję. Swoją pracę wykonuję zawsze z indywidualnym podejściem do każdej osoby i z uwzględnieniem jej potrzeb. Wierzę, że każda kobieta jest wyjątkowa, dlatego fryzura powinna podkreślać jej osobowość, urodę i charakter okazji. Stylizacja to dla mnie nie tylko właściwa technika, ale także przemyślany proces łączący precyzję i estetykę, ale także Twój osobisty komfort.",
         
         // Brands
-        brandsTitle: "Marki, z Którymi Współpracuję",
+        brandsTitle: "W swojej pracy używam produktów",
         
         // Training
         trainingLabel: "",
