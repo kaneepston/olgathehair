@@ -128,9 +128,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Language toggle - always navigate to the target language URL
     // Use event delegation to catch clicks even if buttons are added dynamically
     document.addEventListener('click', function(e) {
-        // Check if clicked element is a language button or inside one
-        const langBtnEn = e.target.closest('#lang-btn-en');
-        const langBtnPl = e.target.closest('#lang-btn-pl');
+        // Check if clicked element is a language button or inside one (works with both ID and class)
+        const langBtnEn = e.target.closest('#lang-btn-en, .lang-btn-en');
+        const langBtnPl = e.target.closest('#lang-btn-pl, .lang-btn-pl');
         
         if (langBtnEn) {
             e.preventDefault();
@@ -571,6 +571,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const galleryModal = document.getElementById('portfolio-gallery-modal');
     const galleryGrid = document.getElementById('gallery-grid');
     const viewAllBtn = document.getElementById('view-all-portfolio');
+    const viewAllHeroBtn = document.getElementById('view-all-portfolio-hero');
     const closeGalleryBtn = document.getElementById('close-gallery');
     
     // Populate gallery with images (only once to avoid reloading)
@@ -600,6 +601,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Open gallery
+    let openedFromHero = false;
+    let heroScrollY = 0;
+
     function openGallery() {
         if (galleryModal) {
             galleryModal.classList.remove('hidden');
@@ -613,6 +617,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (galleryModal) {
             galleryModal.classList.add('hidden');
             document.body.style.overflow = '';
+            if (openedFromHero) {
+                window.scrollTo({ top: heroScrollY, behavior: 'auto' });
+                openedFromHero = false;
+            }
         }
     }
     
@@ -620,6 +628,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (viewAllBtn) {
         viewAllBtn.addEventListener('click', function(e) {
             e.preventDefault();
+            openGallery();
+        });
+    }
+
+    if (viewAllHeroBtn) {
+        viewAllHeroBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openedFromHero = true;
+            heroScrollY = window.scrollY || window.pageYOffset || 0;
             openGallery();
         });
     }

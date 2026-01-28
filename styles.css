@@ -499,3 +499,26 @@ ul[class*="list-disc"] li {
     margin-left: 0 !important;
     padding-left: 0.5rem !important;
 }
+
+/* Portfolio gallery close button - ensure it positions correctly */
+#close-gallery {
+    position: fixed !important;
+    top: calc(3rem - 5px) !important; /* 48px - 5px = 43px on mobile */
+    right: calc(1rem - 5px) !important; /* 16px - 5px = 11px on mobile */
+    z-index: 60 !important;
+}
+
+@media (min-width: 1024px) {
+    /* On desktop, move left to align with gallery content edge */
+    #close-gallery {
+        top: 3rem !important; /* 48px - keep same on desktop */
+        right: calc(4rem + 10px) !important; /* Moved 10px left */
+    }
+}
+
+@media (min-width: 1536px) {
+    /* On very large screens, move further left to align with max-w-7xl content */
+    #close-gallery {
+        right: calc((100vw - 80rem) / 2 + 1.5rem + 10px) !important; /* Align with max-w-7xl container edge + 10px left */
+    }
+}

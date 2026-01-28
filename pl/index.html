@@ -175,7 +175,7 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <!-- Social Media Sidebar -->
+    <!-- Social Media Sidebar (Desktop) -->
     <div class="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 hidden lg:flex flex-col gap-3 p-3 bg-white/90 dark:bg-surface-dark/90 backdrop-blur-md rounded-l-2xl shadow-xl border-y border-l border-gray-100 dark:border-gray-800">
         <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="https://www.instagram.com/olga.thehair/" target="_blank" rel="noopener noreferrer" title="Instagram">
             <span class="font-bold text-xs">IG</span>
@@ -184,6 +184,19 @@
             <span class="font-bold text-xs">FB</span>
         </a>
         <a class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+            <span class="font-bold text-xs">WA</span>
+        </a>
+    </div>
+    
+    <!-- Social Media Bar (Mobile - Bottom) -->
+    <div class="fixed bottom-0 left-0 right-0 z-40 flex md:hidden flex-row gap-3 p-4 justify-center items-center">
+        <a class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="https://www.instagram.com/olga.thehair/" target="_blank" rel="noopener noreferrer" title="Instagram">
+            <span class="font-bold text-xs">IG</span>
+        </a>
+        <a class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="https://www.facebook.com/p/OlgaTheHair-61567158952679/" target="_blank" rel="noopener noreferrer" title="Facebook">
+            <span class="font-bold text-xs">FB</span>
+        </a>
+        <a class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-primary hover:text-white transition-all group" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer" title="WhatsApp">
             <span class="font-bold text-xs">WA</span>
         </a>
     </div>
@@ -209,8 +222,12 @@
                         Umów wizytę
                     </a>
                 </div>
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-600 dark:text-gray-300 hover:text-primary focus:outline-none">
+                <div class="md:hidden flex items-center gap-3">
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-full p-1 flex items-center">
+                        <button class="lang-btn-en text-gray-500 dark:text-gray-400 hover:text-primary px-3 py-1.5 text-xs font-medium transition-colors">EN</button>
+                        <button class="lang-btn-pl bg-white dark:bg-surface-dark text-primary dark:text-white shadow-sm rounded-full px-3 py-1.5 text-xs font-bold transition-all">PL</button>
+                    </div>
+                    <button id="mobile-menu-btn" class="text-gray-600 dark:text-gray-300 hover:text-primary focus:outline-none flex items-center justify-center">
                         <span class="material-symbols-outlined text-3xl">menu</span>
                     </button>
                 </div>
@@ -235,7 +252,7 @@
     <header class="relative pt-24 pb-12 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="fade-in-up z-10 order-2 lg:order-1">
+                <div class="fade-in-up z-10 order-1 lg:order-1">
                     <span class="inline-flex items-center py-1 px-3 rounded-full bg-secondary/20 dark:bg-secondary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6">
                         <span class="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
                         <span data-i18n="headerLocation">KRAKÓW · STUDIO I Z DOJAZDEM</span>
@@ -251,7 +268,7 @@
                         <a class="bg-primary hover:bg-primary/90 text-white px-8 py-3.5 rounded-full text-sm font-medium transition-colors shadow-lg shadow-primary/20" href="https://wa.me/+48732815998" target="_blank" rel="noopener noreferrer" data-i18n="headerBookButton">
                             Umów wizytę
                         </a>
-                        <a class="bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 hover:border-primary text-gray-900 dark:text-white px-8 py-3.5 rounded-full text-sm font-medium transition-colors hover:bg-gray-50 dark:hover:bg-gray-800" href="#portfolio" data-i18n="headerViewPortfolio">
+                        <a id="view-all-portfolio-hero" class="bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 hover:border-primary text-gray-900 dark:text-white px-8 py-3.5 rounded-full text-sm font-medium transition-colors hover:bg-gray-50 dark:hover:bg-gray-800" href="#" data-i18n="headerViewPortfolio">
                             Zobacz Portfolio
                         </a>
                     </div>
@@ -270,7 +287,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="relative fade-in-up delay-200 order-1 lg:order-2 h-[500px] lg:h-[650px] flex items-center justify-center">
+                <div class="relative fade-in-up delay-200 order-2 lg:order-2 h-[500px] lg:h-[650px] flex items-center justify-center">
                     <div class="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl shadow-gray-200 dark:shadow-black/50 z-10">
                         <img alt="Fryzura ślubna Kraków - elegancka stylizacja włosów ślubnych" class="w-full h-full object-cover" style="object-position: center top; aspect-ratio: 4/3;" src="../img/main.webp" srcset="../img/main.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 1200px" loading="eager" fetchpriority="high" decoding="async" width="1200" height="900"/>
                     </div>
@@ -511,19 +528,23 @@
     </footer>
 
     <!-- Portfolio Gallery Modal -->
-    <div id="portfolio-gallery-modal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-sm overflow-y-auto">
-        <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
-                <!-- Header -->
-                <div class="flex justify-between items-center mb-8">
-                    <h2 class="font-display text-3xl md:text-4xl text-white" data-i18n="galleryTitle">Galeria Portfolio</h2>
-                    <button id="close-gallery" class="text-white hover:text-primary transition-colors p-2">
-                        <span class="material-symbols-outlined text-3xl">close</span>
-                    </button>
-                </div>
-                <!-- Gallery Grid -->
-                <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <!-- Images will be inserted here by JavaScript -->
+    <div id="portfolio-gallery-modal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-sm">
+        <!-- Floating Close Button - Outside scrolling container -->
+        <button id="close-gallery" class="fixed top-28 right-4 z-[60] bg-black/80 backdrop-blur rounded-full p-3 text-white hover:text-primary transition-colors shadow-lg">
+            <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+        <!-- Scrolling Content -->
+        <div class="overflow-y-auto h-full">
+            <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto">
+                    <!-- Header -->
+                    <div class="flex justify-between items-center mb-8">
+                        <h2 class="font-display text-3xl md:text-4xl text-white" data-i18n="galleryTitle">Galeria Portfolio</h2>
+                    </div>
+                    <!-- Gallery Grid -->
+                    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <!-- Images will be inserted here by JavaScript -->
+                    </div>
                 </div>
             </div>
         </div>
