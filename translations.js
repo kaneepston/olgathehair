@@ -227,11 +227,11 @@ const translations = {
         
         // Header
         headerLocation: "",
-        headerTitle: "Fryzury ślubne i",
-        headerSubtitle: "okolicznościowe",
+        headerTitle: "Fryzury Ślubne i",
+        headerSubtitle: "Okolicznościowe",
         headerDescription: "Chcesz mieć idealną, trwałą i dostosowaną do swoich potrzeb fryzurę? Trafiłaś w dobre miejsce. Wykonuję profesjonalną stylizację włosów stacjonarnie w moim Studio lub z dojazdem w dowolne, wskazane przez Ciebie miejsce. Twoje piękno to moja pasja! Stworzę dla Ciebie fryzurę o jakiej marzysz, abyś w każdych okolicznościach czuła się wyjątkowo i komfortowo.",
         headerBookButton: "Umów wizytę",
-        headerViewPortfolio: "Zobacz Portfolio",
+        headerViewPortfolio: "Zobacz portfolio",
         headerBridesStyled: "Panny Młode",
         headerStudioLocationTitle: "Stacjonarnie",
         headerStudioLocation: "profesjonalne\nstudio",
