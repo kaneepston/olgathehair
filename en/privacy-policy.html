@@ -2,14 +2,32 @@
 <html class="scroll-smooth" lang="en">
 <head>
     <!-- Cookie Consent - MUST load before GTM -->
-    <script src="../consent.js?v=1.0.0"></script>
-    <!-- Google Tag Manager -->
+    <script src="../consent.min.js?v=1.0.0"></script>
+    <!-- Google Tag Manager - load only when consent granted -->
     <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TWRZ58QR');
+    (function() {
+        function loadGTM() {
+            if (window.__gtmLoaded) return;
+            window.__gtmLoaded = true;
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-TWRZ58QR');
+        }
+        function maybeLoadGTM() {
+            if (typeof window.CookieConsent === 'undefined') return;
+            var c = window.CookieConsent.getConsent();
+            if (!c || (!c.analytics && !c.marketing)) return;
+            loadGTM();
+        }
+        window.loadGTM = loadGTM;
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', maybeLoadGTM);
+        } else {
+            maybeLoadGTM();
+        }
+    })();
     </script>
     <!-- End Google Tag Manager -->
     <meta charset="utf-8"/>
@@ -28,7 +46,7 @@
     <meta name="theme-color" content="#A88F7F">
     <link rel="stylesheet" href="../styles-tailwind.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1&icon_names=arrow_back,arrow_forward,check_circle,chevron_left,chevron_right,close,email,location_on,menu,phone,star&display=block" rel="stylesheet"/>
     <link rel="stylesheet" href="../styles.css?v=1.0.0">
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300">
@@ -172,6 +190,6 @@
             </div>
         </div>
     </footer>
-    <script src="../cookie-banner.js?v=1.0.0"></script>
+    <script src="../cookie-banner.min.js?v=1.0.0"></script>
 </body>
 </html>

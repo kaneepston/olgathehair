@@ -217,10 +217,13 @@
      * Handle accept all
      */
     function handleAcceptAll() {
-        const consent = window.CookieConsent.setConsent({
+        window.CookieConsent.setConsent({
             analytics: true,
             marketing: true
         });
+        if (typeof window.loadGTM === 'function') {
+            window.loadGTM();
+        }
         window.CookieConsent.updateGTMConsent(true, true);
         hideBanner();
         hideModal();
@@ -249,6 +252,9 @@
             analytics: analytics,
             marketing: marketing
         });
+        if ((analytics || marketing) && typeof window.loadGTM === 'function') {
+            window.loadGTM();
+        }
         window.CookieConsent.updateGTMConsent(analytics, marketing);
         hideBanner();
         hideModal();
