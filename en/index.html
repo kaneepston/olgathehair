@@ -362,7 +362,7 @@
     <section class="py-20 bg-surface-light dark:bg-surface-dark" id="training">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="relative rounded-3xl overflow-hidden min-h-[600px] flex items-center justify-center text-center shadow-2xl" style="position: relative; overflow: hidden;">
-                <video id="training-background-video" class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline preload="none" webkit-playsinline controls="false" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback" style="pointer-events: none; -webkit-appearance: none;">
+                <video id="training-background-video" class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline preload="none" webkit-playsinline disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback" style="pointer-events: none; -webkit-appearance: none;">
                     <source data-src="../video/academy-training.mp4" type="video/mp4">
                 </video>
                 <div class="absolute inset-0 bg-black/50 z-10" style="pointer-events: none;"></div>
@@ -409,10 +409,9 @@
                     </div>
                 </div>
                 <div class="lg:w-2/3 p-0">
-                    <div class="w-full h-full min-h-[500px] lg:min-h-[600px]">
+                    <div class="w-full h-[320px] sm:h-[400px] md:h-[500px] lg:h-full lg:min-h-[600px]">
                         <iframe 
                             allowfullscreen="" 
-                            height="100%" 
                             loading="lazy" 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.050736868884!2d19.9392283157176!3d50.06647097942426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b0e00465371%3A0x6b47ce280b22231!2sD%C5%82uga%207%2C%2031-146%20Krak%C3%B3w%2C%20Poland!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 
                             style="border:0;" 
@@ -514,24 +513,45 @@
         function loadVideo() {
             if (source.getAttribute('data-src')) {
                 source.src = videoSrc;
+                source.removeAttribute('data-src');
                 video.load();
+                const playWhenReady = () => {
+                    video.play().catch(() => {});
+                };
+                if (video.readyState >= 2) {
+                    playWhenReady();
+                } else {
+                    video.addEventListener('canplay', playWhenReady, { once: true });
+                }
             }
         }
         
         if (isMobile && 'IntersectionObserver' in window) {
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        // Load video when section is near viewport
-                        loadVideo();
-                        observer.unobserve(entry.target);
-                    }
+            let observerStarted = false;
+            const startObserver = () => {
+                if (observerStarted) return;
+                observerStarted = true;
+                const observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            // Load video when section is near viewport
+                            loadVideo();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    rootMargin: '200px' // Start loading 200px before entering viewport
                 });
-            }, {
-                rootMargin: '200px' // Start loading 200px before entering viewport
-            });
+                
+                observer.observe(video.parentElement); // Observe the section container
+            };
             
-            observer.observe(video.parentElement); // Observe the section container
+            if (window.scrollY > 0) {
+                startObserver();
+            } else {
+                window.addEventListener('scroll', startObserver, { once: true });
+                window.addEventListener('touchstart', startObserver, { once: true });
+            }
         } else if (!isMobile) {
             // On desktop, load video when DOM is ready (preload="none" still prevents early loading)
             if (document.readyState === 'loading') {
