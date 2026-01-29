@@ -1,3 +1,14 @@
+// Non-blocking font load: create preload link in JS, swap to stylesheet on load (no inline onload)
+(function () {
+    var href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap';
+    var link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'style';
+    link.href = href;
+    link.onload = function () { link.onload = null; link.rel = 'stylesheet'; };
+    document.head.appendChild(link);
+})();
+
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');

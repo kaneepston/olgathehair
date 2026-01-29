@@ -78,7 +78,7 @@
     </style>
     <!-- Preload hero (responsive): imagesrcset + imagesizes for correct candidate -->
     <link rel="preload" as="image" href="../img/responsive/main-640w.webp" fetchpriority="high" imagesrcset="../img/responsive/main-320w.webp 320w, ../img/responsive/main-480w.webp 480w, ../img/responsive/main-640w.webp 640w, ../img/responsive/main-800w.webp 800w, ../img/responsive/main-960w.webp 960w, ../img/responsive/main-1200w.webp 1200w" imagesizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 640px">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Text fonts (Inter, Playfair) loaded non‑blocking via script.js preload → stylesheet -->
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"></noscript>
     <!-- Material Symbols blocking so burger (menu/close) icon is preloaded for first paint -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1&icon_names=arrow_back,arrow_forward,check_circle,chevron_left,chevron_right,close,email,location_on,menu,phone,star&display=block">
