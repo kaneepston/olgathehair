@@ -344,10 +344,21 @@ img {
     }
 }
 
-/* Benefit blocks - normalize spacing between EN/PL */
+/* Benefits: desktop = original layout; mobile = inline row, equal spacing, smaller fonts */
+.benefits-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0 2.5rem;
+    row-gap: 1.5rem;
+    align-items: flex-start;
+}
+
 .benefit-block {
     min-width: 0;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .benefit-block p {
@@ -364,6 +375,28 @@ img {
     margin-top: 0.25rem;
     line-height: 1.4;
     white-space: pre-line;
+}
+
+@media (max-width: 767px) {
+    .benefits-container {
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        gap: 0 1rem;
+        row-gap: 0;
+    }
+
+    .benefit-block {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .benefit-block .font-display {
+        font-size: 1rem;
+    }
+
+    .benefits-container .benefit-label {
+        font-size: 0.6rem;
+    }
 }
 
 .brand-logos img,
