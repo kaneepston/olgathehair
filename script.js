@@ -569,7 +569,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const portfolioImages = [`${basePath}main.webp`];
-    portfolioImages.push(`${basePath}portfolio_001.webp`, `${basePath}portfolio_032.webp`, `${basePath}portfolio_025.webp`, `${basePath}portfolio_004.webp`);
+    portfolioImages.push(`${basePath}replace.webp`, `${basePath}portfolio_032.webp`, `${basePath}portfolio_025.webp`, `${basePath}portfolio_004.webp`);
     const previewIds = new Set([1, 4, 25, 32]);
     for (let i = 5; i <= 44; i++) {
         if (previewIds.has(i)) continue;
@@ -579,7 +579,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // All portfolio images including main + preview ones for lightbox navigation
     const allPortfolioImages = [`${basePath}main.webp`];
     for (let i = 1; i <= 44; i++) {
-        allPortfolioImages.push(`${basePath}portfolio_${String(i).padStart(3, '0')}.webp`);
+        allPortfolioImages.push(i === 1 ? `${basePath}replace.webp` : `${basePath}portfolio_${String(i).padStart(3, '0')}.webp`);
     }
     
     const galleryModal = document.getElementById('portfolio-gallery-modal');
