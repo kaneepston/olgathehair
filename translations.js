@@ -234,9 +234,9 @@ const translations = {
         headerViewPortfolio: "Zobacz Portfolio",
         headerBridesStyled: "Panny Młode",
         headerStudioLocationTitle: "Stacjonarnie",
-        headerStudioLocation: "profesjonalne studio",
+        headerStudioLocation: "profesjonalne\nstudio",
         headerOnLocationTitle: "Mobilnie",
-        headerOnLocation: "z dojazdem do wskazanej lokalizacji",
+        headerOnLocation: "z dojazdem do\nwskazanej lokalizacji",
         
         // Portfolio
         portfolioTitle: "Moje Portfolio",

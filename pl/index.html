@@ -4,7 +4,7 @@
     <!-- Cookie Consent - MUST load before GTM (small, keep synchronous) -->
     <script src="../consent.min.js?v=1.0.0"></script>
     <!-- Google Tag Manager - load only when consent granted (analytics or marketing) -->
-    <script>
+    <script nonce="__CSP_NONCE__">
     (function() {
         function loadGTM() {
             if (window.__gtmLoaded) return;
@@ -32,7 +32,7 @@
     <!-- End Google Tag Manager -->
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net; frame-src 'self' https://www.google.com https://www.googletagmanager.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; script-src 'self' 'nonce-__CSP_NONCE__' https://www.googletagmanager.com https://connect.facebook.net https://www.googleadservices.com https://googleads.g.doubleclick.net; script-src-elem 'self' 'nonce-__CSP_NONCE__' https://www.googletagmanager.com https://connect.facebook.net https://www.googleadservices.com https://googleads.g.doubleclick.net; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://www.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://connect.facebook.net; img-src 'self' data: https:; style-src 'self' https: 'unsafe-inline'; font-src 'self' data: https:; frame-src 'self' https://www.googletagmanager.com https://www.google.com; manifest-src 'self'; upgrade-insecure-requests">
     <title>Olga.TheHAIR | Fryzury ślubne i okolicznościowe Kraków</title>
     <meta name="description" content="Profesjonalna stylizacja włosów w Krakowie. Fryzury ślubne i eventowe, studio oraz dojazd.">
     <link rel="canonical" href="https://olgathehair.com/pl/">
@@ -318,18 +318,18 @@
                             Zobacz Portfolio
                         </a>
                     </div>
-                    <div class="max-w-5xl mx-auto flex flex-wrap justify-between gap-x-10 gap-y-6 items-start border-t border-gray-100 dark:border-gray-800 pt-8">
-                        <div class="benefit-block shrink-0">
-                            <p class="font-display text-2xl text-gray-900 dark:text-white">200+</p>
-                            <p class="text-xs text-gray-500 uppercase tracking-wider benefit-label" data-i18n="headerBridesStyled">Panny Młode</p>
+                    <div class="max-w-5xl mx-auto flex flex-row flex-nowrap md:flex-wrap justify-between gap-x-2 gap-y-4 md:gap-x-10 md:gap-y-6 items-start border-t border-gray-100 dark:border-gray-800 pt-8">
+                        <div class="benefit-block flex-1 min-w-0 md:flex-none">
+                            <p class="font-display text-base md:text-2xl text-gray-900 dark:text-white">200+</p>
+                            <p class="text-[0.6rem] md:text-xs text-gray-500 uppercase tracking-wider benefit-label" data-i18n="headerBridesStyled">Panny Młode</p>
                         </div>
-                        <div class="benefit-block shrink-0">
-                            <p class="font-display text-2xl text-gray-900 dark:text-white" data-i18n="headerStudioLocationTitle">Stacjonarnie</p>
-                            <p class="text-xs text-gray-500 uppercase tracking-wider benefit-label" data-i18n="headerStudioLocation">profesjonalne studio</p>
+                        <div class="benefit-block flex-1 min-w-0 md:flex-none">
+                            <p class="font-display text-base md:text-2xl text-gray-900 dark:text-white" data-i18n="headerStudioLocationTitle">Stacjonarnie</p>
+                            <p class="text-[0.6rem] md:text-xs text-gray-500 uppercase tracking-wider benefit-label" data-i18n="headerStudioLocation">profesjonalne studio</p>
                         </div>
-                        <div class="benefit-block shrink-0">
-                            <p class="font-display text-2xl text-gray-900 dark:text-white" data-i18n="headerOnLocationTitle">Mobilnie</p>
-                            <p class="text-xs text-gray-500 uppercase tracking-wider benefit-label" data-i18n="headerOnLocation">z dojazdem do wskazanej lokalizacji</p>
+                        <div class="benefit-block flex-1 min-w-0 md:flex-none">
+                            <p class="font-display text-base md:text-2xl text-gray-900 dark:text-white" data-i18n="headerOnLocationTitle">Mobilnie</p>
+                            <p class="text-[0.6rem] md:text-xs text-gray-500 uppercase tracking-wider benefit-label" data-i18n="headerOnLocation">z dojazdem do wskazanej lokalizacji</p>
                         </div>
                     </div>
                 </div>
@@ -625,7 +625,7 @@
     <script src="../script.min.js?v=1.0.0" defer></script>
     <script src="../cookie-banner.min.js?v=1.0.0" defer></script>
     <!-- Lazy load video when near viewport (especially on mobile) -->
-    <script>
+    <script nonce="__CSP_NONCE__">
     (function() {
         const video = document.getElementById('training-background-video');
         if (!video) return;

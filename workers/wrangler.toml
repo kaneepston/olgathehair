@@ -1,0 +1,10 @@
+# Deploy: npx wrangler deploy (from workers/ or project root with name)
+# For Pages: use "Direct Upload" Worker and route /* to it; set env.ASSETS to Pages fetch.
+name = "olgathehair-csp"
+main = "csp-injector.js"
+compatibility_date = "2024-01-01"
+
+# Route this Worker to your zone (optional; use Dashboard or CLI):
+# routes = [{ pattern = "olgathehair.com/*", zone_name = "olgathehair.com" }]
+
+# For Cloudflare Pages: attach Worker to Pages project; Worker receives env.ASSETS.

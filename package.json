@@ -7,7 +7,9 @@
     "watch-css": "tailwindcss -i input.css -o styles-tailwind.css --watch",
     "build:js": "terser script.js -o script.min.js -c -m && terser consent.js -o consent.min.js -c -m && terser cookie-banner.js -o cookie-banner.min.js -c -m && terser translations.js -o translations.min.js -c -m",
     "images": "node scripts/build-images.js",
-    "images:avif": "node scripts/build-images.js --avif"
+    "images:avif": "node scripts/build-images.js --avif",
+    "csp:local": "node scripts/csp-nonce.js",
+    "csp:restore": "node scripts/csp-nonce.js restore"
   },
   "devDependencies": {
     "sharp": "^0.33.5",

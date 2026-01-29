@@ -363,13 +363,7 @@ img {
 .benefit-label {
     margin-top: 0.25rem;
     line-height: 1.4;
-    white-space: normal;
-}
-
-@media (max-width: 640px) {
-    .benefit-label {
-        font-size: 0.65rem;
-    }
+    white-space: pre-line;
 }
 
 .brand-logos img,
