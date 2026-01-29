@@ -553,7 +553,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const galleryPath = window.location.pathname;
     const isSubdirectory = galleryPath.startsWith('/pl/') || galleryPath.startsWith('/en/');
     const basePath = isSubdirectory ? '../img/' : 'img/';
-    
+    const responsiveDir = basePath + 'responsive/';
+    const RESPONSIVE_WIDTHS = [320, 480, 640, 800, 960, 1200];
+
+    function pathToBase(path) {
+        const m = path.match(/([^/]+)\.webp$/);
+        if (!m) return null;
+        return m[1].replace(/\s+/g, '-');
+    }
+    function getResponsiveSrc(base, width) {
+        return responsiveDir + base + '-' + width + 'w.webp';
+    }
+    function getResponsiveSrcset(base, widths) {
+        return widths.map(function (w) { return getResponsiveSrc(base, w) + ' ' + w + 'w'; }).join(', ');
+    }
+
     const portfolioImages = [`${basePath}main.webp`];
     portfolioImages.push(`${basePath}portfolio_001.webp`, `${basePath}portfolio_032.webp`, `${basePath}portfolio_025.webp`, `${basePath}portfolio_004.webp`);
     const previewIds = new Set([1, 4, 25, 32]);
@@ -576,6 +590,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Populate gallery with images (only once to avoid reloading)
     let isGalleryPopulated = false;
+    var thumbWidths = [320, 480, 640];
+    var thumbSizes = '(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw';
     function populateGallery() {
         if (!galleryGrid || isGalleryPopulated) return;
         portfolioImages.forEach((imageSrc, index) => {
@@ -583,17 +599,18 @@ document.addEventListener('DOMContentLoaded', function() {
             imgContainer.className = 'group relative overflow-hidden rounded-2xl cursor-pointer aspect-square gallery-image';
             imgContainer.style.minHeight = '250px';
             imgContainer.dataset.image = imageSrc;
-            
+            const base = pathToBase(imageSrc);
             const img = document.createElement('img');
-            img.src = imageSrc;
-            img.alt = `Portfolio image ${index + 1}`;
+            img.src = base ? getResponsiveSrc(base, 640) : imageSrc;
+            img.srcset = base ? getResponsiveSrcset(base, thumbWidths) : '';
+            img.sizes = base ? thumbSizes : '';
+            img.alt = 'Portfolio image ' + (index + 1);
             img.className = 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-110';
             img.style.objectPosition = 'center top';
             img.loading = 'lazy';
             img.decoding = 'async';
             img.width = 800;
             img.height = 800;
-            
             imgContainer.appendChild(img);
             galleryGrid.appendChild(imgContainer);
         });
@@ -691,12 +708,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    var lightboxWidths = [640, 800, 960, 1200];
+    var lightboxSizes = '100vw';
     function updateLightboxImage() {
-        if (lightboxImage && currentImageSet.length > 0) {
-            lightboxImage.src = currentImageSet[currentLightboxIndex];
-            if (currentIndexSpan) currentIndexSpan.textContent = currentLightboxIndex + 1;
-            if (totalImagesSpan) totalImagesSpan.textContent = currentImageSet.length;
+        if (!lightboxImage || currentImageSet.length === 0) return;
+        var path = currentImageSet[currentLightboxIndex];
+        var base = pathToBase(path);
+        if (base) {
+            lightboxImage.src = getResponsiveSrc(base, 1200);
+            lightboxImage.srcset = getResponsiveSrcset(base, lightboxWidths);
+            lightboxImage.sizes = lightboxSizes;
+        } else {
+            lightboxImage.src = path;
+            lightboxImage.removeAttribute('srcset');
+            lightboxImage.removeAttribute('sizes');
         }
+        if (currentIndexSpan) currentIndexSpan.textContent = currentLightboxIndex + 1;
+        if (totalImagesSpan) totalImagesSpan.textContent = currentImageSet.length;
     }
     
     function nextImage() {
