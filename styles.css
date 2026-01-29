@@ -377,6 +377,17 @@ img {
     white-space: pre-line;
 }
 
+/* PL desktop only: keep all three benefits on one row (longer labels can wrap inside block) */
+@media (min-width: 768px) {
+    html[lang="pl"] .benefits-container {
+        flex-wrap: nowrap;
+    }
+    html[lang="pl"] .benefit-block {
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+}
+
 @media (max-width: 767px) {
     .benefits-container {
         flex-wrap: nowrap;
